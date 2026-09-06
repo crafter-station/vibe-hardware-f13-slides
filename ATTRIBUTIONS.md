@@ -11,6 +11,10 @@ Los assets se guardan localmente para que el deck funcione sin conexión.
 - `resistors.jpg`: “Electronic-Axial-Lead-Resistors-Array”, Evan-Amos, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Electronic-Axial-Lead-Resistors-Array.jpg), public domain.
 - `breadboard-white.jpg`: “Electronics-White-Breadboard”, Evan-Amos, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Electronics-White-Breadboard.jpg), public domain.
 - `jumper-wires.jpg`: “A few Jumper Wires”, oomlout, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:A_few_Jumper_Wires.jpg), CC BY-SA 2.0.
+- `oscilloscope.jpg`: “Digital oscilloscope in use”, Radarvector, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Digital_oscilloscope_in_use.jpg), CC BY-SA 4.0.
+- `usb-power.jpg`: “USB-C Extension Cable with Power Switch”, SparkFun Electronics, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:CAB-25579-USB-C-Extension-Cable-with-Power-Switch-Feature.jpg), CC BY 2.0.
+- `microcontroller.jpg`: “Macro photograph of the RP2350 microcontroller on a Raspberry Pi Pico 2 board”, Profpcde, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Macro_photograph_of_the_RP2350_microcontroller_on_a_Raspberry_Pi_Pico_2_board.jpg), CC0 1.0.
+- `capacitors.jpg`: “Electronic-Component-Elec-Capacitors”, Evan-Amos, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Electronic-Component-Elec-Capacitors.jpg), public domain.
 
 Las fotografías se muestran con recorte y filtros de color/contraste dentro del deck.
 

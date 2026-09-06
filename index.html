@@ -48,7 +48,7 @@
         <section class="zone intro-zone" data-x="900" data-y="850" data-z="1" aria-label="Inicio del mapa">
           <div class="zone-index">FIELD NOTE 01 / F13</div>
           <h1>Nuestro workflow<br />con IA para construir<br /><em>hardware</em></h1>
-          <p class="lead">Un mapa para razonar sobre el mundo físico<br />sin confiar ciegamente en el modelo.</p>
+          <p class="lead">IA propone. Hardware responde.</p>
           <div class="names">SHIARA <i>↔</i> ANTHONY</div>
           <figure class="sticker board-sticker tilt-right">
             <span class="tape"></span><img src="./public/assets/esp32.jpg" alt="Placa ESP32" />
@@ -64,6 +64,7 @@
             <p>En hardware, un error de la IA</p><h2 class="hot">hace humo.</h2>
           </div>
           <div class="smoke-doodle" aria-hidden="true"><i></i><i></i><i></i><b>5V?!</b></div>
+          <div class="meme-sticker smoke-meme">MAGIC SMOKE<small>SINGLE USE ONLY</small></div>
           <figure class="sticker led-sticker tilt-left">
             <span class="tape red"></span><img src="./public/assets/led.jpg" alt="LED rojo" />
             <figcaption>FRÁGIL / NO FREÍR</figcaption>
@@ -73,14 +74,17 @@
 
         <section class="zone grounding-zone" data-x="4000" data-y="950" data-z="1" aria-label="La IA no ve la realidad">
           <div class="zone-index">GROUNDING GAP</div>
-          <h2>La IA no ve<br />la <em>realidad.</em></h2>
+          <h2>La IA no ve<br /><em>tu circuito.</em></h2>
           <div class="gap-diagram">
-            <div class="llm-blob"><b>LLM</b><small>respuesta<br />plausible</small></div>
+            <div class="llm-blob"><b>LLM</b><small>texto</small></div>
             <strong>≠</strong>
-            <div class="physical-chip"><b>3.3V</b><small>mundo<br />físico</small></div>
+            <div class="physical-chip"><b>3.3V</b><small>señal</small></div>
           </div>
-          <div class="error-tags"><span>GPIO?</span><span>VOLTAJE?</span><span>PINOUT?</span><span>API?</span><span>CORRIENTE?</span></div>
-          <p class="thesis-note">El problema no es generación.<br /><b>Es grounding.</b></p>
+          <div class="error-tags"><span>GPIO?</span><span>VOLTAJE?</span><span>PINOUT?</span></div>
+          <figure class="sticker micro-sticker tilt-right">
+            <span class="tape blue"></span><img src="./public/assets/microcontroller.jpg" alt="Macro de un microcontrolador sobre una placa" />
+            <figcaption>THE MODEL HAS NEVER MET THIS BOARD</figcaption>
+          </figure>
           <aside><b>Anthony:</b> “El modelo conoce texto sobre placas. No sabe qué compramos, cómo está cableado o qué voltaje medimos.” <br /><b>Shiara:</b> aportar dos fallos reales del proyecto.</aside>
         </section>
 
@@ -89,13 +93,11 @@
           <h2>El hardware también<br />tiene un <em>codebase.</em></h2>
           <p class="datasheet-line">Se llama <b>datasheet.</b></p>
           <div class="loose-files mono">
-            <div><span>PDF</span> controller/esp32-s3.pdf</div>
-            <div><span>PDF</span> display/waveshare-spec.pdf</div>
-            <div><span>MD</span> components.md</div>
-            <div><span>MD</span> hardware-constraints.md</div>
+            <div><span>PDF</span> esp32-s3.pdf</div>
+            <div><span>MD</span> constraints.md</div>
             <div class="selected"><span>MD</span> current-wiring.md <i>← reality now</i></div>
           </div>
-          <div class="constraint-note mono"><b>logic_level:</b> 3.3V<br /><b>never:</b> assume 5V tolerance<br /><b>always:</b> cite electrical limits</div>
+          <div class="constraint-note mono"><b>logic:</b> 3.3V<br /><b>never:</b> assume 5V</div>
           <figure class="sticker resistor-sticker tilt-right">
             <span class="tape"></span><img src="./public/assets/resistors.jpg" alt="Resistencias electrónicas" />
             <figcaption>CONSTRAINTS ARE FEATURES</figcaption>
@@ -105,13 +107,14 @@
 
         <section class="zone prompt-zone" data-x="6100" data-y="1900" data-z="1" aria-label="Prompt con restricciones">
           <div class="zone-index">DON'T ASK FOR AN ANSWER</div>
-          <h2>Pide la superficie<br />de <em>incertidumbre.</em></h2>
+          <h2>Pide <em>incertidumbre.</em><br />No una respuesta.</h2>
           <div class="loose-terminal mono">
-            <p><b>›</b> Antes de sugerir cableado:</p>
-            <ol><li>identifica voltajes;</li><li>verifica cada pin;</li><li>enumera supuestos;</li><li>marca riesgos de daño;</li><li>cita el datasheet.</li></ol>
+            <p><b>›</b> Antes de cablear:</p>
+            <ol><li>verifica voltajes + pines;</li><li>expón supuestos;</li><li>marca riesgos + fuente.</li></ol>
             <span class="terminal-cursor"></span>
           </div>
-          <p class="scribble">¿Qué podría hacer<br />que esto sea falso?</p>
+          <p class="scribble">¿Qué falta?</p>
+          <div class="meme-sticker trust-meme"><s>TRUST ME BRO</s><small>CITE THE DATASHEET</small></div>
           <figure class="sticker breadboard-sticker tilt-left">
             <span class="tape blue"></span><img src="./public/assets/breadboard-white.jpg" alt="Breadboard blanca" />
             <figcaption>BUILD / BUT VERIFY FIRST</figcaption>
@@ -121,20 +124,22 @@
 
         <section class="zone caution-zone" data-x="4900" data-y="2250" data-z="1.05" aria-label="Una respuesta peligrosa">
           <div class="warning-tape">PLAUSIBLE ≠ SAFE</div>
-          <div class="answer-scrap mono"><small>ASSISTANT</small><p>“Conecta <b>VCC → 5V.</b><br />El módulo debería tolerarlo.”</p><i></i><span>confidence theater · 96%</span></div>
+          <div class="answer-scrap mono"><small>ASSISTANT</small><p>“<b>VCC → 5V.</b><br />Debería aguantar.”</p><i></i><span>confidence theater · 96%</span></div>
           <div class="versus">BUT</div>
           <div class="datasheet-scrap mono"><small>ABSOLUTE MAXIMUM</small><strong>VDD ≤ 3.6 V</strong><p>damage may be permanent</p></div>
-          <h2>La confianza suena bien.<br /><em>La evidencia decide.</em></h2>
+          <h2><em>La evidencia decide.</em></h2>
           <p class="example-label">EJEMPLO ILUSTRATIVO · CAMBIAR POR UN CASO REAL</p>
           <aside><b>Anthony:</b> reemplazar este ejemplo por un fallo real antes del evento. <br /><b>Shiara:</b> “La confianza lingüística no es una medición eléctrica.”</aside>
         </section>
 
         <section class="zone debug-zone" data-x="3350" data-y="2050" data-z="1" aria-label="Debugging con hipótesis">
           <div class="zone-index">DEBUG LIKE A SCIENTIST</div>
-          <h2>“No funciona”<br />no es <em>contexto.</em></h2>
-          <div class="bad-question"><s>¿Cómo lo arreglo?</s><small>20 cambios aleatorios</small></div>
-          <div class="good-question">Genera las <b>3 hipótesis</b> más probables.<br />No cambies nada todavía.<br />¿Cómo las distinguimos <b>experimentalmente?</b></div>
-          <div class="role-line"><span>SHIARA · OBSERVA</span><i></i><span>ANTHONY · FORMULA</span></div>
+          <h2>“No funciona”<br /><em>no basta.</em></h2>
+          <div class="good-question"><b>3 hipótesis.</b><br />1 experimento que las separe.</div>
+          <figure class="sticker debug-board-sticker tilt-left">
+            <span class="tape blue"></span><img src="./public/assets/breadboard.jpg" alt="Circuito real montado en una breadboard" />
+            <figcaption>WORKS ON MY BREADBOARD*</figcaption>
+          </figure>
           <figure class="sticker wires-sticker tilt-right">
             <span class="tape red"></span><img src="./public/assets/jumper-wires.jpg" alt="Cables jumper" />
             <figcaption>THE ACTUAL WIRING</figcaption>
@@ -149,16 +154,18 @@
             <div class="orbit-core">REALITY<small>closes<br />the loop</small></div>
             <span class="o1">SÍNTOMA</span><span class="o2">HIPÓTESIS</span><span class="o3">EXPERIMENTO</span><span class="o4">MEDICIÓN</span><span class="o5">UPDATE</span>
           </div>
-          <p class="loop-side-note">No buscamos certeza.<br />Buscamos el experimento<br />que más información nos da.</p>
+          <figure class="sticker capacitor-sticker tilt-left">
+            <span class="tape red"></span><img src="./public/assets/capacitors.jpg" alt="Colección de condensadores electrónicos" />
+            <figcaption>PHYSICS HAS ENTERED THE CHAT</figcaption>
+          </figure>
           <aside><b>Anthony:</b> recorrer el loop. El output del modelo nunca termina el proceso. <br /><b>Shiara:</b> “Cada vuelta deja mejor contexto para la siguiente.”</aside>
         </section>
 
         <section class="zone measure-zone" data-x="900" data-y="3550" data-z="1" aria-label="Medir cambia las probabilidades">
           <div class="zone-index">INJECT REALITY</div>
-          <h2>La medición reduce<br />el espacio de <em>posibilidades.</em></h2>
+          <h2>Medir elimina<br /><em>posibilidades.</em></h2>
           <div class="hypothesis-list mono"><p><span>H1</span> sin alimentación <i class="likely"></i></p><p><span>H2</span> cableado incorrecto <i></i></p><p><span>H3</span> fallo de comunicación <i></i></p></div>
           <div class="meter-reading"><small>EXPECTED</small><b>3.3 V</b><i>→</i><small>MEASURED</small><strong>0.0 V</strong></div>
-          <p class="probability-update">nueva evidencia → <b>nuevo contexto</b> → nuevas probabilidades</p>
           <figure class="sticker meter-sticker tilt-left">
             <span class="tape blue"></span><img src="./public/assets/multimeter.jpg" alt="Multímetro" />
             <figcaption>REALITY INPUT / 0.0V</figcaption>
@@ -170,7 +177,7 @@
           <div class="live-header"><span></span> LIVE DEBUG SESSION <button id="demoReset" type="button">REPLAY [R]</button></div>
           <h2>Modelo <em>↔</em> mundo físico</h2>
           <div class="live-pair">
-            <div class="physical-side"><small>SHIARA / PHYSICAL</small><div class="screen-device">NO SIGNAL<i></i></div><p class="demo-step" data-order="1">OBSERVACIÓN<br /><b>Display apagado</b></p><p class="demo-step reading" data-order="3">MEDICIÓN<br /><b>0.0 V</b></p></div>
+            <div class="physical-side"><small>SHIARA / PHYSICAL</small><figure class="live-photo"><img src="./public/assets/oscilloscope.jpg" alt="Osciloscopio digital en uso" /><figcaption>NO SIGNAL</figcaption></figure><img class="usb-power" src="./public/assets/usb-power.jpg" alt="Cable USB-C con interruptor de alimentación" /><p class="demo-step" data-order="1">OBSERVACIÓN<br /><b>Display apagado</b></p><p class="demo-step reading" data-order="3">MEDICIÓN<br /><b>0.0 V</b></p></div>
             <div class="signal-exchange"><i></i><i></i><i></i></div>
             <div class="model-side mono"><small>ANTHONY / MODEL</small><div class="demo-step" data-order="2"><b>HYPOTHESES</b><p>H1 power<br />H2 wiring<br />H3 comms</p></div><div class="demo-step update" data-order="4"><b>UPDATE</b><p>Prioritize H1.<br /><em>Check USB → regulator.</em></p></div></div>
           </div>
@@ -180,11 +187,11 @@
 
         <section class="zone rules-zone" data-x="4300" data-y="3500" data-z="1" aria-label="Tres reglas">
           <div class="zone-index">FIELD RULES</div>
-          <h2>Cómo dejar que la IA<br />se equivoque <em>sin peligro.</em></h2>
+          <h2>Tres reglas para<br /><em>no freír nada.</em></h2>
           <div class="rule-notes">
-            <article><span>01</span><h3>GROUND</h3><p>Specs reales.<br />No su memoria.</p></article>
-            <article><span>02</span><h3>CONSTRAIN</h3><p>Supuestos y riesgos<br />a la vista.</p></article>
-            <article><span>03</span><h3>CLOSE THE LOOP</h3><p>Hipótesis → experimento<br />→ medición.</p></article>
+            <article><span>01</span><h3>GROUND</h3><p>Specs reales.</p></article>
+            <article><span>02</span><h3>CONSTRAIN</h3><p>Riesgos visibles.</p></article>
+            <article><span>03</span><h3>CLOSE LOOP</h3><p>Medir → actualizar.</p></article>
           </div>
           <div class="approved-stamp">REALITY<br />APPROVED</div>
           <aside><b>Shiara:</b> Ground. <br /><b>Anthony:</b> Constrain y Close the loop. Una frase por regla.</aside>
@@ -194,7 +201,7 @@
           <div class="zone-index">END OF ROUTE / JOIN THE COMMUNITY</div>
           <h2>La IA nos da<br /><em>hipótesis.</em></h2>
           <h2>La realidad nos da<br /><strong>respuestas.</strong></h2>
-          <p>¿También estás aprendiendo a shippear hardware?<br /><b>Únete a la comunidad de devs construyendo electrónica en público.</b></p>
+          <p><b>¿Construyes hardware con IA? Únete.</b></p>
           <a class="community-url" href="http://crafters.chat/">crafters.chat →</a>
           <a class="repo-url" href="https://github.com/crafter-station/vibe-hardware-f13-slides" target="_blank" rel="noreferrer">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.38.97.1-.75.4-1.27.74-1.56-2.57-.29-5.27-1.29-5.27-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.05 0 0 .97-.31 3.16 1.18a10.9 10.9 0 0 1 5.76 0c2.19-1.49 3.16-1.18 3.16-1.18.63 1.58.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.71 5.39-5.29 5.68.42.36.79 1.06.79 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z" /></svg>
