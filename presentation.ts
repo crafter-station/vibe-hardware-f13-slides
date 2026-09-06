@@ -35,6 +35,7 @@ zones.forEach((zone) => {
 });
 
 let current: number | null = null;
+let exploreAnchor: number | null = null;
 let camera = { x: 0, y: 0, scale: 1 };
 let dragging = false;
 let dragMoved = false;
@@ -199,6 +200,7 @@ function updateInterface() {
 
 function showOverview(animate = true) {
   current = null;
+  exploreAnchor = null;
   clearDemo();
   document.body.classList.add("overview");
   document.body.classList.remove("free-explore");
@@ -213,6 +215,7 @@ function goTo(index: number, animate = true) {
   const next = Math.max(0, Math.min(zones.length - 1, index));
   const direction = current === null || next >= current ? 1 : -1;
   current = next;
+  exploreAnchor = next;
   document.body.classList.remove("overview", "free-explore");
   history.replaceState(null, "", `#${next + 1}`);
   document.title = `${String(next + 1).padStart(2, "0")} · Vibe Hardware`;
@@ -225,6 +228,7 @@ function goTo(index: number, animate = true) {
 
 function enterFreeExplore() {
   const alreadyExploring = document.body.classList.contains("free-explore");
+  if (!alreadyExploring) exploreAnchor = current;
   document.body.classList.remove("overview");
   document.body.classList.add("free-explore");
   if (!alreadyExploring) {
@@ -232,6 +236,25 @@ function enterFreeExplore() {
     history.replaceState(null, "", "#explore");
     document.title = "EXPLORE · Vibe Hardware";
   }
+}
+
+function setExploreAnchor(worldX: number, worldY: number) {
+  exploreAnchor = zones.reduce((nearest, zone, index) => {
+    const nearestZone = zones[nearest]!;
+    const nearestDistance = (Number(nearestZone.dataset.x) - worldX) ** 2 + (Number(nearestZone.dataset.y) - worldY) ** 2;
+    const distance = (Number(zone.dataset.x) - worldX) ** 2 + (Number(zone.dataset.y) - worldY) ** 2;
+    return distance < nearestDistance ? index : nearest;
+  }, 0);
+  previousButton!.disabled = exploreAnchor === 0;
+  nextButton!.disabled = exploreAnchor === zones.length - 1;
+  if (locationReadout) {
+    const label = pins[exploreAnchor]?.querySelector("small")?.textContent ?? "";
+    locationReadout.textContent = `FREE MAP · NEAR ${String(exploreAnchor + 1).padStart(2, "0")} · ${label}`;
+  }
+}
+
+function navigationAnchor() {
+  return document.body.classList.contains("free-explore") ? exploreAnchor : current;
 }
 
 function zoomAt(factor: number, screenX = window.innerWidth / 2, screenY = window.innerHeight / 2) {
@@ -243,6 +266,7 @@ function zoomAt(factor: number, screenX = window.innerWidth / 2, screenY = windo
     return;
   }
   enterFreeExplore();
+  setExploreAnchor(worldX, worldY);
   setCamera({ scale, x: screenX - worldX * scale, y: screenY - worldY * scale }, false);
 }
 
@@ -297,16 +321,24 @@ viewport.addEventListener("pointerup", (event) => {
   viewport.releasePointerCapture(event.pointerId);
   viewport.classList.remove("dragging");
   document.body.classList.remove("manual-camera");
+  if (dragMoved) {
+    setExploreAnchor(
+      (window.innerWidth / 2 - camera.x) / camera.scale,
+      (window.innerHeight / 2 - camera.y) / camera.scale,
+    );
+  }
 });
 
 document.addEventListener("keydown", (event) => {
   if (["ArrowRight", "ArrowDown", " ", "PageDown"].includes(event.key)) {
     event.preventDefault();
-    goTo(current === null ? 0 : current + 1);
+    const anchor = navigationAnchor();
+    goTo(anchor === null ? 0 : anchor + 1);
   }
   if (["ArrowLeft", "ArrowUp", "PageUp"].includes(event.key)) {
     event.preventDefault();
-    if (current !== null) goTo(current - 1);
+    const anchor = navigationAnchor();
+    if (anchor !== null) goTo(anchor - 1);
   }
   if (event.key === "Home" || event.key === "Escape" || event.key.toLowerCase() === "o") showOverview();
   if (event.key === "End") goTo(zones.length - 1);
@@ -322,8 +354,14 @@ document.addEventListener("keydown", (event) => {
 mapButton?.addEventListener("click", () => showOverview());
 zoomOutButton?.addEventListener("click", () => zoomAt(.82));
 zoomInButton?.addEventListener("click", () => zoomAt(1.22));
-previousButton.addEventListener("click", () => { if (current !== null) goTo(current - 1); });
-nextButton.addEventListener("click", () => goTo(current === null ? 0 : current + 1));
+previousButton.addEventListener("click", () => {
+  const anchor = navigationAnchor();
+  if (anchor !== null) goTo(anchor - 1);
+});
+nextButton.addEventListener("click", () => {
+  const anchor = navigationAnchor();
+  goTo(anchor === null ? 0 : anchor + 1);
+});
 themeButton?.addEventListener("click", toggleTheme);
 soundButton?.addEventListener("click", () => sound.toggle());
 fullscreenButton?.addEventListener("click", toggleFullscreen);
