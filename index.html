@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#090b0f" />
+    <meta name="description" content="Un mapa sobre nuestro workflow con IA para construir hardware" />
+    <title>Vibe Hardware · El mapa</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="overview">
+    <div class="boot" id="boot" aria-hidden="true">
+      <div class="boot-map"><b>F13 / FIELD MAP</b><i></i><span>trazando conexiones...</span></div>
+    </div>
+
+    <main class="viewport" id="viewport" aria-label="Mapa interactivo de la presentación">
+      <div class="world" id="world">
+        <div class="world-grid" aria-hidden="true"></div>
+        <div class="map-coordinate c1">00° CONTEXT</div>
+        <div class="map-coordinate c2">03.3V / SAFE ZONE</div>
+        <div class="map-coordinate c3">PHYSICAL REALITY</div>
+
+        <svg class="route-map" viewBox="0 0 7200 4800" aria-hidden="true">
+          <path class="route-halo" d="M900 850 C1450 450 1900 450 2450 700 S3450 1250 4000 950 S5100 350 5600 700 S6350 1350 6100 1900 S5450 2350 4900 2250 S3900 1800 3350 2050 S2350 2700 1800 2350 S650 2850 900 3550 S1900 4200 2500 3900 S3600 3300 4300 3500 S5250 4300 5900 4000" />
+          <path class="route-line" d="M900 850 C1450 450 1900 450 2450 700 S3450 1250 4000 950 S5100 350 5600 700 S6350 1350 6100 1900 S5450 2350 4900 2250 S3900 1800 3350 2050 S2350 2700 1800 2350 S650 2850 900 3550 S1900 4200 2500 3900 S3600 3300 4300 3500 S5250 4300 5900 4000" />
+          <path class="route-current" d="M900 850 C1450 450 1900 450 2450 700 S3450 1250 4000 950 S5100 350 5600 700 S6350 1350 6100 1900 S5450 2350 4900 2250 S3900 1800 3350 2050 S2350 2700 1800 2350 S650 2850 900 3550 S1900 4200 2500 3900 S3600 3300 4300 3500 S5250 4300 5900 4000" />
+          <path class="branch" d="M2450 700 l-150 -330 M4000 950 l220 -330 M1800 2350 l-320 -210 M4300 3500 l190 -330" />
+        </svg>
+
+        <div class="map-legend" aria-hidden="true">
+          <span>THE SAFE-TO-BE-WRONG ROUTE</span>
+          <b>GROUND</b><i></i><b>CONSTRAIN</b><i></i><b>MEASURE</b><i></i><b>UPDATE</b>
+        </div>
+
+        <button class="map-pin" data-target="0" style="--x:900px;--y:850px" type="button"><span>01</span><small>START</small></button>
+        <button class="map-pin" data-target="1" style="--x:2450px;--y:700px" type="button"><span>02</span><small>STAKES</small></button>
+        <button class="map-pin" data-target="2" style="--x:4000px;--y:950px" type="button"><span>03</span><small>GROUND</small></button>
+        <button class="map-pin" data-target="3" style="--x:5600px;--y:700px" type="button"><span>04</span><small>CONTEXT</small></button>
+        <button class="map-pin" data-target="4" style="--x:6100px;--y:1900px" type="button"><span>05</span><small>CONSTRAIN</small></button>
+        <button class="map-pin" data-target="5" style="--x:4900px;--y:2250px" type="button"><span>06</span><small>CAUTION</small></button>
+        <button class="map-pin" data-target="6" style="--x:3350px;--y:2050px" type="button"><span>07</span><small>DEBUG</small></button>
+        <button class="map-pin" data-target="7" style="--x:1800px;--y:2350px" type="button"><span>08</span><small>LOOP</small></button>
+        <button class="map-pin" data-target="8" style="--x:900px;--y:3550px" type="button"><span>09</span><small>MEASURE</small></button>
+        <button class="map-pin" data-target="9" style="--x:2500px;--y:3900px" type="button"><span>10</span><small>LIVE</small></button>
+        <button class="map-pin" data-target="10" style="--x:4300px;--y:3500px" type="button"><span>11</span><small>RULES</small></button>
+        <button class="map-pin" data-target="11" style="--x:5900px;--y:4000px" type="button"><span>12</span><small>JOIN</small></button>
+
+        <section class="zone intro-zone" data-x="900" data-y="850" data-z="1" aria-label="Inicio del mapa">
+          <div class="zone-index">FIELD NOTE 01 / F13</div>
+          <h1>Nuestro workflow<br />con IA para construir<br /><em>hardware</em></h1>
+          <p class="lead">Un mapa para razonar sobre el mundo físico<br />sin confiar ciegamente en el modelo.</p>
+          <div class="names">SHIARA <i>↔</i> ANTHONY</div>
+          <figure class="sticker board-sticker tilt-right">
+            <span class="tape"></span><img src="./public/assets/esp32.jpg" alt="Placa ESP32" />
+            <figcaption>ESP32 // START HERE</figcaption>
+          </figure>
+          <aside><b>Shiara:</b> mostrar o activar el proyecto terminado. <br /><b>Anthony:</b> “Este no es un deck. Es el mapa del circuito que construimos para que la IA pueda equivocarse sin romper nada.”</aside>
+        </section>
+
+        <section class="zone stakes-zone" data-x="2450" data-y="700" data-z="1.04" aria-label="El costo del error">
+          <div class="zone-index">WHY THIS MAP EXISTS</div>
+          <div class="stakes-copy">
+            <p>En software, un error de la IA</p><h2>hace <s>crash.</s></h2>
+            <p>En hardware, un error de la IA</p><h2 class="hot">hace humo.</h2>
+          </div>
+          <div class="smoke-doodle" aria-hidden="true"><i></i><i></i><i></i><b>5V?!</b></div>
+          <figure class="sticker led-sticker tilt-left">
+            <span class="tape red"></span><img src="./public/assets/led.jpg" alt="LED rojo" />
+            <figcaption>FRÁGIL / NO FREÍR</figcaption>
+          </figure>
+          <aside><b>Anthony:</b> dejar respirar la comparación. <br /><b>Shiara:</b> señalar físicamente una pieza frágil: “En este mundo, una respuesta plausible puede tener costo material.”</aside>
+        </section>
+
+        <section class="zone grounding-zone" data-x="4000" data-y="950" data-z="1" aria-label="La IA no ve la realidad">
+          <div class="zone-index">GROUNDING GAP</div>
+          <h2>La IA no ve<br />la <em>realidad.</em></h2>
+          <div class="gap-diagram">
+            <div class="llm-blob"><b>LLM</b><small>respuesta<br />plausible</small></div>
+            <strong>≠</strong>
+            <div class="physical-chip"><b>3.3V</b><small>mundo<br />físico</small></div>
+          </div>
+          <div class="error-tags"><span>GPIO?</span><span>VOLTAJE?</span><span>PINOUT?</span><span>API?</span><span>CORRIENTE?</span></div>
+          <p class="thesis-note">El problema no es generación.<br /><b>Es grounding.</b></p>
+          <aside><b>Anthony:</b> “El modelo conoce texto sobre placas. No sabe qué compramos, cómo está cableado o qué voltaje medimos.” <br /><b>Shiara:</b> aportar dos fallos reales del proyecto.</aside>
+        </section>
+
+        <section class="zone context-zone" data-x="5600" data-y="700" data-z=".96" aria-label="Datasheets y contexto">
+          <div class="zone-index">SUPPLY THE WORLD</div>
+          <h2>El hardware también<br />tiene un <em>codebase.</em></h2>
+          <p class="datasheet-line">Se llama <b>datasheet.</b></p>
+          <div class="loose-files mono">
+            <div><span>PDF</span> controller/esp32-s3.pdf</div>
+            <div><span>PDF</span> display/waveshare-spec.pdf</div>
+            <div><span>MD</span> components.md</div>
+            <div><span>MD</span> hardware-constraints.md</div>
+            <div class="selected"><span>MD</span> current-wiring.md <i>← reality now</i></div>
+          </div>
+          <div class="constraint-note mono"><b>logic_level:</b> 3.3V<br /><b>never:</b> assume 5V tolerance<br /><b>always:</b> cite electrical limits</div>
+          <figure class="sticker resistor-sticker tilt-right">
+            <span class="tape"></span><img src="./public/assets/resistors.jpg" alt="Resistencias electrónicas" />
+            <figcaption>CONSTRAINTS ARE FEATURES</figcaption>
+          </figure>
+          <aside><b>Anthony:</b> “En software damos al agente el repo. Aquí el repo son datasheets, inventario y cableado actual.” <br /><b>Shiara:</b> explicar que current-wiring.md refleja el montaje real, no el ideal.</aside>
+        </section>
+
+        <section class="zone prompt-zone" data-x="6100" data-y="1900" data-z="1" aria-label="Prompt con restricciones">
+          <div class="zone-index">DON'T ASK FOR AN ANSWER</div>
+          <h2>Pide la superficie<br />de <em>incertidumbre.</em></h2>
+          <div class="loose-terminal mono">
+            <p><b>›</b> Antes de sugerir cableado:</p>
+            <ol><li>identifica voltajes;</li><li>verifica cada pin;</li><li>enumera supuestos;</li><li>marca riesgos de daño;</li><li>cita el datasheet.</li></ol>
+            <span class="terminal-cursor"></span>
+          </div>
+          <p class="scribble">¿Qué podría hacer<br />que esto sea falso?</p>
+          <figure class="sticker breadboard-sticker tilt-left">
+            <span class="tape blue"></span><img src="./public/assets/breadboard-white.jpg" alt="Breadboard blanca" />
+            <figcaption>BUILD / BUT VERIFY FIRST</figcaption>
+          </figure>
+          <aside><b>Anthony:</b> leer solo las reglas 2, 3 y 4. “La respuesta importa menos que los supuestos que obliga a exponer.” <br /><b>Shiara:</b> conectar cada regla con una decisión física visible.</aside>
+        </section>
+
+        <section class="zone caution-zone" data-x="4900" data-y="2250" data-z="1.05" aria-label="Una respuesta peligrosa">
+          <div class="warning-tape">PLAUSIBLE ≠ SAFE</div>
+          <div class="answer-scrap mono"><small>ASSISTANT</small><p>“Conecta <b>VCC → 5V.</b><br />El módulo debería tolerarlo.”</p><i></i><span>confidence theater · 96%</span></div>
+          <div class="versus">BUT</div>
+          <div class="datasheet-scrap mono"><small>ABSOLUTE MAXIMUM</small><strong>VDD ≤ 3.6 V</strong><p>damage may be permanent</p></div>
+          <h2>La confianza suena bien.<br /><em>La evidencia decide.</em></h2>
+          <p class="example-label">EJEMPLO ILUSTRATIVO · CAMBIAR POR UN CASO REAL</p>
+          <aside><b>Anthony:</b> reemplazar este ejemplo por un fallo real antes del evento. <br /><b>Shiara:</b> “La confianza lingüística no es una medición eléctrica.”</aside>
+        </section>
+
+        <section class="zone debug-zone" data-x="3350" data-y="2050" data-z="1" aria-label="Debugging con hipótesis">
+          <div class="zone-index">DEBUG LIKE A SCIENTIST</div>
+          <h2>“No funciona”<br />no es <em>contexto.</em></h2>
+          <div class="bad-question"><s>¿Cómo lo arreglo?</s><small>20 cambios aleatorios</small></div>
+          <div class="good-question">Genera las <b>3 hipótesis</b> más probables.<br />No cambies nada todavía.<br />¿Cómo las distinguimos <b>experimentalmente?</b></div>
+          <div class="role-line"><span>SHIARA · OBSERVA</span><i></i><span>ANTHONY · FORMULA</span></div>
+          <figure class="sticker wires-sticker tilt-right">
+            <span class="tape red"></span><img src="./public/assets/jumper-wires.jpg" alt="Cables jumper" />
+            <figcaption>THE ACTUAL WIRING</figcaption>
+          </figure>
+          <aside><b>Shiara:</b> “El display no enciende.” Pausa. <br /><b>Anthony:</b> reformular en hipótesis y experimentos capaces de refutarlas.</aside>
+        </section>
+
+        <section class="zone loop-zone" data-x="1800" data-y="2350" data-z=".94" aria-label="El loop de verificación">
+          <div class="zone-index">THE CORE LOOP</div>
+          <h2>La IA propone.<br /><em>El mundo desempata.</em></h2>
+          <div class="orbit">
+            <div class="orbit-core">REALITY<small>closes<br />the loop</small></div>
+            <span class="o1">SÍNTOMA</span><span class="o2">HIPÓTESIS</span><span class="o3">EXPERIMENTO</span><span class="o4">MEDICIÓN</span><span class="o5">UPDATE</span>
+          </div>
+          <p class="loop-side-note">No buscamos certeza.<br />Buscamos el experimento<br />que más información nos da.</p>
+          <aside><b>Anthony:</b> recorrer el loop. El output del modelo nunca termina el proceso. <br /><b>Shiara:</b> “Cada vuelta deja mejor contexto para la siguiente.”</aside>
+        </section>
+
+        <section class="zone measure-zone" data-x="900" data-y="3550" data-z="1" aria-label="Medir cambia las probabilidades">
+          <div class="zone-index">INJECT REALITY</div>
+          <h2>La medición reduce<br />el espacio de <em>posibilidades.</em></h2>
+          <div class="hypothesis-list mono"><p><span>H1</span> sin alimentación <i class="likely"></i></p><p><span>H2</span> cableado incorrecto <i></i></p><p><span>H3</span> fallo de comunicación <i></i></p></div>
+          <div class="meter-reading"><small>EXPECTED</small><b>3.3 V</b><i>→</i><small>MEASURED</small><strong>0.0 V</strong></div>
+          <p class="probability-update">nueva evidencia → <b>nuevo contexto</b> → nuevas probabilidades</p>
+          <figure class="sticker meter-sticker tilt-left">
+            <span class="tape blue"></span><img src="./public/assets/multimeter.jpg" alt="Multímetro" />
+            <figcaption>REALITY INPUT / 0.0V</figcaption>
+          </figure>
+          <aside><b>Shiara:</b> tomar la medición y decir el valor. <br /><b>Anthony:</b> alimentar el valor al agente: “Esto elimina familias enteras de explicaciones.”</aside>
+        </section>
+
+        <section class="zone live-zone" data-x="2500" data-y="3900" data-z="1" aria-label="Demo en vivo">
+          <div class="live-header"><span></span> LIVE DEBUG SESSION <button id="demoReset" type="button">REPLAY [R]</button></div>
+          <h2>Modelo <em>↔</em> mundo físico</h2>
+          <div class="live-pair">
+            <div class="physical-side"><small>SHIARA / PHYSICAL</small><div class="screen-device">NO SIGNAL<i></i></div><p class="demo-step" data-order="1">OBSERVACIÓN<br /><b>Display apagado</b></p><p class="demo-step reading" data-order="3">MEDICIÓN<br /><b>0.0 V</b></p></div>
+            <div class="signal-exchange"><i></i><i></i><i></i></div>
+            <div class="model-side mono"><small>ANTHONY / MODEL</small><div class="demo-step" data-order="2"><b>HYPOTHESES</b><p>H1 power<br />H2 wiring<br />H3 comms</p></div><div class="demo-step update" data-order="4"><b>UPDATE</b><p>Prioritize H1.<br /><em>Check USB → regulator.</em></p></div></div>
+          </div>
+          <div class="demo-status" id="demoStatus">AUTO SEQUENCE · 8 SEC</div>
+          <aside><b>Shiara:</b> objetivo, montaje, síntoma, medición. <br /><b>Anthony:</b> contexto, hipótesis, siguiente experimento. Pulsar R para repetir.</aside>
+        </section>
+
+        <section class="zone rules-zone" data-x="4300" data-y="3500" data-z="1" aria-label="Tres reglas">
+          <div class="zone-index">FIELD RULES</div>
+          <h2>Cómo dejar que la IA<br />se equivoque <em>sin peligro.</em></h2>
+          <div class="rule-notes">
+            <article><span>01</span><h3>GROUND</h3><p>Specs reales.<br />No su memoria.</p></article>
+            <article><span>02</span><h3>CONSTRAIN</h3><p>Supuestos y riesgos<br />a la vista.</p></article>
+            <article><span>03</span><h3>CLOSE THE LOOP</h3><p>Hipótesis → experimento<br />→ medición.</p></article>
+          </div>
+          <div class="approved-stamp">REALITY<br />APPROVED</div>
+          <aside><b>Shiara:</b> Ground. <br /><b>Anthony:</b> Constrain y Close the loop. Una frase por regla.</aside>
+        </section>
+
+        <section class="zone end-zone" data-x="5900" data-y="4000" data-z="1" aria-label="Cierre y comunidad">
+          <div class="zone-index">END OF ROUTE / JOIN THE COMMUNITY</div>
+          <h2>La IA nos da<br /><em>hipótesis.</em></h2>
+          <h2>La realidad nos da<br /><strong>respuestas.</strong></h2>
+          <p>¿También estás aprendiendo a shippear hardware?<br /><b>Únete a la comunidad de devs construyendo electrónica en público.</b></p>
+          <a class="community-url" href="http://crafters.chat/">crafters.chat →</a>
+          <div class="end-names">SHIARA + ANTHONY · F13</div>
+          <figure class="sticker qr-sticker tilt-right">
+            <span class="tape"></span><a href="http://crafters.chat/"><img src="./public/assets/repo-qr.png" alt="QR a crafters.chat" /></a>
+            <figcaption>CRAFTERS.CHAT · COME BUILD WITH US</figcaption>
+          </figure>
+          <aside><b>Ambos:</b> “La IA nos da hipótesis. La realidad nos da respuestas.” <br /><b>Anthony:</b> “Si tú también estás aprendiendo a shippear hardware, estamos construyendo esa comunidad en crafters.chat.” Dejar el QR durante preguntas.</aside>
+        </section>
+      </div>
+    </main>
+
+    <footer class="navigator">
+      <button class="map-button" id="mapButton" type="button" title="Ver mapa completo (O)" aria-label="Ver mapa completo">⌁</button>
+      <button id="previousButton" type="button" aria-label="Punto anterior">←</button>
+      <div class="route-progress" id="routeProgress"></div>
+      <button id="nextButton" type="button" aria-label="Punto siguiente">→</button>
+      <span class="travel-hint">ARROWS · SCROLL · DRAG</span>
+      <div class="nav-tools">
+        <button id="zoomOutButton" type="button" title="Alejar">−</button><button id="zoomInButton" type="button" title="Acercar">+</button>
+        <button id="notesButton" type="button" title="Notas (N)">N</button><button id="themeButton" type="button" title="Tema (T)">T</button>
+        <button id="soundButton" type="button" title="Sonido (M)">S<span>ON</span></button><button id="fullscreenButton" type="button" title="Pantalla completa (F)">F</button>
+      </div>
+    </footer>
+
+    <div class="location-readout" id="locationReadout">OVERVIEW / 12 STOPS</div>
+
+    <div class="notes-panel" id="notesPanel"><div class="notes-head"><span>FIELD NOTES · <b id="notesStop">MAP</b></span><button id="closeNotes" type="button">CLOSE [N]</button></div><div id="notesContent">Selecciona un punto del mapa.</div></div>
+    <button class="audio-gate" id="audioGate" type="button">ENABLE AMBIENT SIGNAL</button>
+
+    <script type="module" src="./presentation.ts"></script>
+  </body>
+</html>
