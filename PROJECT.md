@@ -24,13 +24,15 @@ build and verify their first hardware project with an AI agent.
 
 The presentation is a conventional 27-slide deck with no visible navigation or
 repository URL. It builds one obstacle-avoiding robot in stages, uses sourced
-component photography and a technical robot illustration, and includes a
-timed 30-minute presenter guide.
+component photography and a technical robot illustration, and includes three
+reproducible Cursor/GPT-5.6 Sol High interactions for architecture, isolated
+firmware, and evidence-driven debugging.
 
 ## Next action
 
-Build and measure the robot, replace the illustration with original photos,
-and update the illustrative pin map and voltages with physical evidence.
+Build and measure the robot, capture the real agent interactions, replace the
+illustration with original photos, and update the illustrative pin map and
+voltages with physical evidence.
 
 ## Links
 

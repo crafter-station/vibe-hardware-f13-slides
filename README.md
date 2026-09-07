@@ -6,7 +6,9 @@ y depurar una falla con un multímetro.
 
 La secuencia cubre comportamiento, inventario, arquitectura, energía, contexto
 del agente, mapa de pines, protección de ECHO, pruebas aisladas, integración,
-debugging y verificación final.
+debugging y verificación final. Incluye interacciones reproducibles con Cursor y
+GPT-5.6 Sol High para planificar, generar una prueba mínima y depurar con
+mediciones.
 
 ## Ejecutar
 
@@ -51,6 +53,7 @@ medir `VM` en el driver: se esperan aproximadamente 6 V y se observan 0 V.
 5. Verificar que el QR final apunta a los recursos correctos.
 6. Seguir [`PRESENTATION-GUIDE.md`](./PRESENTATION-GUIDE.md).
 7. Reemplazar `robot-plan.svg` por una foto propia del montaje terminado.
+8. Reemplazar los ejemplos de agente por capturas de interacciones reales.
 
 ## Verificar
 

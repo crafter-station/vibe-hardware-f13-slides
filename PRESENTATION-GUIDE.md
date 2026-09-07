@@ -96,9 +96,19 @@ La tabla es ilustrativa. Confirmarla contra el pinout del ESP32 exacto.
 
 ### Slide 10 — 1:15
 
-> El prompt convierte nuestra revisión en un contrato. Exige voltajes, fuentes,
-> supuestos, riesgos y una prueba sin energía. También impide generar código antes
-> de aprobar el mapa de pines.
+> Abrimos Cursor con GPT-5.6 Sol High y pedimos arquitectura antes de código. La
+> salida debe incluir conexiones, voltajes, fuentes, riesgos y una prueba sin
+> energía.
+
+Interacción:
+
+1. Cargar el contexto real del montaje.
+2. Pegar la instrucción visible en la slide.
+3. Detener al agente cuando entregue el mapa.
+4. Revisar la respuesta antes de aceptar cambios.
+
+Reemplazar el ejemplo por una captura real. Guardar una captura de respaldo para
+presentar sin internet.
 
 ### Slide 11 — 1:00
 
@@ -127,9 +137,17 @@ Verificar resistencias, tolerancias y voltaje con el montaje exacto.
 
 ### Slide 15 — 1:15
 
-> Probamos el sensor solo. Imprimimos distancia, movemos un objeto y comparamos con
-> una regla. Una cifra que cambia no basta; debe cambiar en la dirección correcta
-> y con una precisión útil.
+> Después de aprobar el circuito, Cursor genera la prueba más pequeña: leer
+> distancia por serial con los pines acordados y sin incluir motores.
+
+Interacción:
+
+1. Pedir un único cambio pequeño.
+2. Revisar el diff antes de ejecutar.
+3. Compilar y cargar el firmware.
+4. Mover un objeto y comparar la lectura con una regla.
+
+Mostrar el diff real y la salida serial real durante la charla.
 
 ### Slide 16 — 1:15
 
@@ -176,15 +194,34 @@ motores.
 
 ### Slide 22 — 1:00
 
-> El agente recibe evidencia concreta: VM igual a 0.0 voltios, USB activo y sensor
-> estable. Propone revisar el camino de potencia. Corregimos, medimos cerca de 6
-> voltios y recién entonces probamos movimiento.
+> Devolvemos evidencia concreta: VM igual a 0.0 voltios, USB activo y sensor
+> estable. También indicamos que no cambie firmware. El agente propone medir antes
+> y después del switch para localizar dónde desaparece el voltaje.
+
+Interacción:
+
+1. Escribir valores observados, no “sigue fallando”.
+2. Pedir una sola prueba que separe hipótesis.
+3. Ejecutar la prueba físicamente.
+4. Actualizar el contexto con el resultado.
+
+Reemplazar el ejemplo por la conversación real después de montar el robot.
 
 ### Slide 23 — 1:00
 
-> Buscamos errores recurrentes: otra revisión de placa, 5 voltios directos al GPIO,
-> motores desde un pin, tierra sin compartir, STBY ignorado y pines que compilan
-> pero no sirven en el montaje.
+> Un síntoma solo produce cambios genéricos. “El robot se reinicia” puede llevar al
+> agente a agregar delays o cambiar librerías. Un log de brownout y una caída en
+> 3.3 voltios cambian el diagnóstico hacia alimentación.
+
+Ejemplo reproducible:
+
+1. Arrancar motores desde una alimentación inadecuada.
+2. Capturar `Brownout detector was triggered`.
+3. Pedir al agente una prueba física antes de modificar código.
+4. Separar la potencia de motores, compartir GND y medir otra vez.
+
+No afirmar que fue una falla real del proyecto sin conservar el log y la
+medición.
 
 ### Slide 24 — 0:45
 
@@ -199,8 +236,9 @@ motores.
 
 ### Slide 26 — 0:30
 
-> El ciclo es contexto, propuesta, verificación, medición y actualización. Se
-> repite para sensor, motores e integración.
+> Vibecoding hardware significa hacer un cambio pequeño, medir el resultado y
+> devolver la evidencia al agente. El ciclo se repite para sensor, motores e
+> integración.
 
 ### Slide 27 — 0:30
 
