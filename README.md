@@ -1,8 +1,12 @@
-# Vibe Hardware · Field Map
+# Nuestro workflow con IA para construir hardware
 
-Mapa interactivo para **“Nuestro workflow con IA para construir hardware”**, presentado por Shiara y Anthony en F13.
+Deck de 27 slides para una charla de 30 minutos en F13. La presentación sigue
+un solo ejemplo: construir un primer robot desde software, verificar cada etapa
+y depurar una falla con un multímetro.
 
-No es una secuencia de slides. Todo el contenido vive en un único mapa conectado: se puede ver la ruta completa, entrar a cualquiera de sus 9 puntos, hacer zoom y recorrer el canvas libremente.
+La secuencia cubre comportamiento, inventario, arquitectura, energía, contexto
+del agente, mapa de pines, protección de ECHO, pruebas aisladas, integración,
+debugging y verificación final.
 
 ## Ejecutar
 
@@ -15,37 +19,45 @@ Abre [http://localhost:3000](http://localhost:3000).
 
 ## Navegación
 
-| Control | Acción |
-| --- | --- |
-| Click en un punto numerado | Viajar directamente a ese punto |
-| `→`, `↓`, `Space` | Siguiente punto |
-| `←`, `↑` | Punto anterior |
-| `O`, `Esc`, `Home` | Volver al mapa completo |
-| Scroll, `+`, `-` | Zoom libre alrededor del cursor |
-| Drag | Recorrer libremente el mapa |
-| `End` | Ir al cierre |
-| `F` | Pantalla completa |
-| `T` | Tema oscuro / claro |
-| `M` | Audio ambiente y señales |
-| `N` | Notas para presenters |
-| `R` | Repetir la secuencia visual de apoyo en el punto 7 |
+- `→`, `↓`, `Space`, click: siguiente slide
+- `←`, `↑`: slide anterior
+- `Home`: inicio
+- `End`: cierre
+- `F`: pantalla completa
+- `N`: notas para presenters
 
-El navegador exige una primera interacción antes de reproducir audio; el mapa muestra un botón discreto para activarlo.
+## Ejemplo del robot
+
+- ESP32
+- Sensor ultrasónico HC-SR04
+- Driver de motores TB6612FNG
+- Dos motores DC
+- Cuatro pilas AA para los motores
+- Alimentación USB para el ESP32
+- Tierra compartida
+- Divisor de voltaje entre ECHO y el GPIO del ESP32
+
+La falla controlada de la demo es la alimentación de motores apagada. El robot
+detecta el obstáculo, pero las ruedas no giran. La primera prueba segura es
+medir `VM` en el driver: se esperan aproximadamente 6 V y se observan 0 V.
 
 ## Antes del evento
 
-1. Sustituir la placa genérica del punto 1 por una foto limpia del proyecto terminado.
-2. Preparar dos ejemplos reales y breves de errores del agente para el punto 3.
-3. El QR del punto 9 apunta a [crafters.chat](http://crafters.chat/), la comunidad de devs aprendiendo a shippear hardware.
-4. Ensayar la demo física con los valores esperado y medido del punto 7.
-5. Conectar la cámara al MacBook y ensayar el cambio entre slides, app de cámara y agente en el punto 7.
-6. Seguir el guion cronometrado de [`PRESENTATION-GUIDE.md`](./PRESENTATION-GUIDE.md) para ensayar roles, acciones y plan B.
+1. Confirmar los componentes reales y sus datasheets.
+2. No presentar el ejemplo como una construcción real si todavía no fue
+   montado y medido.
+3. Ensayar la demo con el robot elevado para que las ruedas giren sin moverse.
+4. Preparar una respuesta del agente y una grabación de respaldo.
+5. Verificar que el QR final apunta a los recursos correctos.
+6. Seguir [`PRESENTATION-GUIDE.md`](./PRESENTATION-GUIDE.md).
+7. Reemplazar `robot-plan.svg` por una foto propia del montaje terminado.
 
 ## Verificar
 
 ```bash
 bun run check
-bun build ./index.html --outdir ./dist
+bun run build
 ```
 
-Las atribuciones de fotografías y tipografías están en [`ATTRIBUTIONS.md`](./ATTRIBUTIONS.md).
+Las atribuciones de tipografías están en
+[`ATTRIBUTIONS.md`](./ATTRIBUTIONS.md).

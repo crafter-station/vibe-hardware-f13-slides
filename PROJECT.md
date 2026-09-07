@@ -1,4 +1,4 @@
-# Vibe Hardware · Field Map
+# Vibe Hardware · F13 deck
 
 This file is public. Do not include personal context, private goals, names of
 people from the vault, health information, private decisions, or local vault
@@ -10,25 +10,27 @@ paths.
 
 ## Goal
 
-Deliver the F13 talk as a single interactive field map: nine connected points
-that show how to use an AI agent to build hardware without treating the model
-as the authority.
+Deliver a direct 30-minute F13 talk that teaches software developers how to
+build and verify their first hardware project with an AI agent.
 
 ## Done when
 
-- The map can be presented live in a 20-minute slot, including the hardware
-  demo path and the camera-failure fallback.
+- The 27-slide deck can be presented in 30 minutes.
+- One robot example covers requirements, components, power, wiring, firmware,
+  validation, debugging, and final acceptance.
+- The live demo and fallback are safe and rehearsed.
 
 ## Current state
 
-The Bun map, presentation guide, and visual assets are on `main`. Point 1 still
-uses a generic board photo. The talk script still has placeholders for real
-agent failures and the actual display or sensor.
+The presentation is a conventional 27-slide deck with no visible navigation or
+repository URL. It builds one obstacle-avoiding robot in stages, uses sourced
+component photography and a technical robot illustration, and includes a
+timed 30-minute presenter guide.
 
 ## Next action
 
-Replace the generic board photo at point 1 with a clean photo of the finished
-project.
+Build and measure the robot, replace the illustration with original photos,
+and update the illustrative pin map and voltages with physical evidence.
 
 ## Links
 

@@ -1,376 +1,238 @@
 # Nuestro workflow con IA para construir hardware
 
-Guion de práctica para Shiara y Anthony. F13, domingo 13 de septiembre, 15:45.
-
-## Objetivo de tiempo
-
-- **Contenido hablado y acciones:** aproximadamente 16:30.
-- **Colchón dentro de cada punto:** 3:30 en total.
-- **Final obligatorio de la presentación:** 20:00.
-- **Reserva adicional del slot de 30 minutos:** 10:00 para cambios técnicos, fallos de la demo o preguntas.
-
-No llenar el colchón durante el ensayo. Si todo funciona, terminar antes de 20:00 es correcto.
+Guion de práctica para una charla de 30 minutos en F13.
 
 ## Tesis
 
-> La IA puede ampliar lo que somos capaces de construir fuera de nuestra especialidad, pero solo si construimos un loop de verificación a su alrededor.
+> El agente acelera propuestas. Las fuentes y las mediciones autorizan el
+> siguiente paso.
 
-> La IA nos da hipótesis. La realidad nos da respuestas.
+## Resultado
 
-## Roles
+Construir un robot de dos ruedas que:
 
-- **Shiara, mundo físico:** componentes, montaje, observaciones, mediciones y reparación.
-- **Anthony, mundo del modelo:** contexto, prompts, supuestos, hipótesis y actualización del agente.
-- Las intervenciones funcionan como ping-pong. No hacer “la mitad de cada uno”.
+1. Avanza.
+2. Mide distancia con un HC-SR04.
+3. Se detiene a menos de 20 cm de un obstáculo.
+4. Gira y continúa.
 
-## Cronograma de 20 minutos
+El montaje usa un ESP32, un TB6612FNG, dos motores DC, cuatro pilas AA, tierra
+compartida y un divisor de voltaje para ECHO.
 
-| Punto | Tema | Contenido | Colchón | Máximo | Acumulado |
-| --- | --- | ---: | ---: | ---: | ---: |
-| 1 | Proyecto terminado | 1:30 | 0:30 | 2:00 | 2:00 |
-| 2 | Crash vs. humo | 1:30 | 0:30 | 2:00 | 4:00 |
-| 3 | La IA no ve la realidad | 1:45 | 0:30 | 2:15 | 6:15 |
-| 4 | El codebase del hardware | 2:00 | 0:30 | 2:30 | 8:45 |
-| 5 | Exponer incertidumbre | 2:00 | 0:30 | 2:30 | 11:15 |
-| 6 | Debugging y loop | 2:00 | 0:30 | 2:30 | 13:45 |
-| 7 | Live Vibe Hardware Time | 3:30 | 0:45 | 4:15 | 18:00 |
-| 8 | Tres reglas | 0:45 | 0:15 | 1:00 | 19:00 |
-| 9 | Cierre y QR | 0:45 | 0:15 | 1:00 | 20:00 |
+El ejemplo sigue siendo ilustrativo hasta montar y medir el hardware exacto.
 
-Marcas de control:
+## Cronograma
 
-- Salir del punto 3 antes de **6:15**.
-- Empezar la demo antes de **13:45**.
-- Recuperar las slides antes de **18:00**.
-- Cerrar antes de **20:00**.
-
-## Qué se eliminó
-
-- La slide independiente del error de 5 V: el riesgo ya se explica en los puntos 2 y 3.
-- La slide abstracta del loop: el loop ahora aparece dentro del punto 6.
-- La slide independiente de medición: la medición ocurre físicamente durante la demo.
-
-Así evitamos explicar dos veces lo que el público puede ver en directo.
-
-## Preparación de la demo
-
-### Mesa
-
-- Proyecto preensamblado, asegurado a una base y probado.
-- No construir desde cero ni soldar en directo.
-- Fallo seguro y repetible: interruptor USB apagado o alimentación conocida desconectada.
-- Multímetro configurado en voltaje DC, con puntas conectadas.
-- Punto de prueba de 3.3 V marcado.
-- Reparación preparada y marcada discretamente para Shiara.
-- Segundo proyecto funcionando como respaldo.
-- Ningún conductor suelto que pueda causar un corto.
-
-### Agente
-
-- Contexto y prompt abiertos antes de empezar.
-- Respuesta de respaldo guardada localmente.
-- No escribir el prompt desde cero; enviarlo ya preparado.
-- No cambiar código antes de comprobar la alimentación.
-
-### Cámara
-
-- Conectar el teléfono, GoPro o cámara al MacBook antes de abrir la presentación.
-- Abrir la app de cámara en el MacBook y seleccionar esa cámara como fuente.
-- Conceder permisos de cámara antes del evento; no provocar un diálogo del sistema durante la charla.
-- Colocar la cámara en plano cenital, horizontal y conectada a corriente.
-- Bloquear enfoque, exposición y orientación.
-- Encuadrar placa, display, multímetro y manos de Shiara.
-- Confirmar que el valor del multímetro se lee en el proyector.
-- Mantener abiertas y ordenadas las tres ventanas: slides, cámara y agente.
-- Ensayar el cambio con `Cmd-Tab` sin mostrar escritorio, notificaciones ni ventanas privadas.
-- Desactivar notificaciones y evitar que el MacBook o la cámara entren en reposo.
-- Entrada: Anthony dice **“cambiamos a la mesa”** y abre la app de cámara.
-- Salida: Anthony dice **“volvemos al mapa”** y vuelve al navegador.
+| Slides | Contenido | Tiempo |
+| --- | --- | ---: |
+| 1–3 | Resultado y comportamiento | 2:30 |
+| 4–7 | Piezas, arquitectura y estrategia | 4:45 |
+| 8–12 | Contexto, prompt y propuesta | 5:45 |
+| 13–18 | Verificación y construcción incremental | 7:15 |
+| 19–22 | Demo de debugging | 5:45 |
+| 23–24 | Alucinaciones y checklist | 1:45 |
+| 25–27 | Resultado, workflow y cierre | 2:00 |
+|  | **Total** | **30:00** |
 
 ## Guion
 
-### 1. Proyecto terminado, máximo 2:00
+### Slide 1 — 0:30
 
-**En pantalla:** título.
+> Vamos a construir un primer proyecto de hardware de principio a fin usando un
+> agente. El agente ayuda, pero no decide qué es seguro conectar.
 
-**Acción:** Shiara muestra o activa el proyecto terminado.
+### Slide 2 — 1:00
 
-**Shiara:**
+> Este es el resultado: un robot de dos ruedas que percibe un obstáculo y cambia
+> su movimiento. Vamos a recorrer todo lo necesario para llegar aquí.
 
-> Esto es lo que construimos. Somos personas de software y producto; empezamos sin saber diseñar electrónica y aprendimos construyendo algo físico.
+Mostrar el robot real si ya está listo. La ilustración debe reemplazarse por una
+foto propia antes del evento.
 
-**Anthony:**
+### Slide 3 — 1:00
 
-> Usamos un agente de IA durante todo el proceso. Lo interesante no fue que pudiera explicarnos electrónica. Fue descubrir cuándo no creerle.
+> Empezamos con comportamiento verificable: avanzar, medir, detenerse a 20
+> centímetros y girar. Estas cuatro acciones son nuestras pruebas de aceptación.
 
-> No vamos a enseñar una colección de prompts. Vamos a enseñar el sistema que usamos para que la IA pueda equivocarse sin romper nada.
+### Slide 4 — 1:15
 
-**Transición:**
+> Cerramos el inventario. El agente no puede agregar componentes que no están
+> sobre la mesa. Antes del evento confirmamos la revisión exacta de cada módulo.
 
-> Porque equivocarse en hardware tiene consecuencias distintas.
+Mostrar físicamente el ESP32, el HC-SR04 y el TB6612FNG.
 
-### 2. Crash vs. humo, máximo 2:00
+### Slide 5 — 1:00
 
-**En pantalla:** “En software hace crash. En hardware hace humo.”
+> Pensamos el robot como un sistema de software: entrada, decisión y salida. El
+> HC-SR04 produce datos, el ESP32 decide y el driver entrega corriente a los
+> motores.
 
-**Anthony:**
+> El ESP32 controla el motor. No lo alimenta.
 
-> En software, una respuesta incorrecta suele producir un error o un test rojo.
+### Slide 6 — 1:30
 
-Pausa.
+> Tenemos dos dominios. USB alimenta la lógica. Las pilas alimentan los motores
+> por VM. Ambos comparten tierra para que las señales tengan la misma referencia.
 
-> En hardware puede aplicar el voltaje equivocado, superar un límite eléctrico o freír un componente.
+Explicar que los picos de corriente de los motores pueden resetear el
+microcontrolador si se trata todo como una sola carga.
 
-**Acción:** Shiara señala un componente frágil.
+### Slide 7 — 1:00
 
-**Shiara:**
+> Construimos por etapas. Cada etapa termina con una prueba. No integramos la
+> siguiente parte hasta que la anterior produzca evidencia estable.
 
-> El componente no sabe que la respuesta sonaba convincente. Solo recibe el voltaje.
+### Slide 8 — 1:15
 
-**Anthony:**
+> El agente empieza con contexto: fuentes exactas, inventario, restricciones y
+> estado real del montaje. La memoria del modelo no es una fuente.
 
-> Nuestro objetivo no es confiar mejor. Es equivocarnos de forma segura.
+### Slide 9 — 1:15
 
-### 3. La IA no ve la realidad, máximo 2:15
+> Reservamos pines antes de pedir firmware. Cada pin debe existir en nuestra placa,
+> soportar la dirección requerida y no interferir con el arranque.
 
-**En pantalla:** LLM ≠ circuito físico.
+La tabla es ilustrativa. Confirmarla contra el pinout del ESP32 exacto.
 
-**Anthony:**
+### Slide 10 — 1:15
 
-> El modelo conoce texto sobre placas. No ve la revisión que compramos, cómo está cableada ni qué voltaje existe ahora en este punto.
+> El prompt convierte nuestra revisión en un contrato. Exige voltajes, fuentes,
+> supuestos, riesgos y una prueba sin energía. También impide generar código antes
+> de aprobar el mapa de pines.
 
-> Puede confundir GPIO, voltaje, pinout o una API y seguir sonando seguro.
+### Slide 11 — 1:00
 
-**Shiara:**
+> El mapa del agente es una propuesta revisable. Validamos cada línea como una
+> interfaz entre dos sistemas y conectamos después.
 
-> En nuestro proyecto vimos [FALLO REAL 1] y [FALLO REAL 2]. Las respuestas eran plausibles, pero sus supuestos no coincidían con el objeto sobre la mesa.
+### Slide 12 — 1:00
 
-**Anthony:**
+> Para cada conexión identificamos origen, destino, fuente y prueba. Esta plantilla
+> es más importante que la seguridad con la que el modelo redacta la respuesta.
 
-> El problema no es generar. Es grounding: conectar la respuesta con la realidad.
+### Slide 13 — 1:15
 
-### 4. El codebase del hardware, máximo 2:30
+> Aquí aparece el riesgo principal. ECHO sale cerca de 5 voltios. El GPIO del
+> ESP32 usa lógica de 3.3 voltios. Una respuesta convincente no cambia ese límite.
 
-**En pantalla:** datasheets, `constraints.md`, `current-wiring.md`.
+No afirmar que esta propuesta apareció en una conversación real sin conservar la
+evidencia. Presentarla como un caso reproducible.
 
-**Anthony:**
+### Slide 14 — 1:15
 
-> A un agente de software le damos el repositorio. El hardware también tiene codebase: datasheets, esquemas, inventario, restricciones y cableado actual.
+> Agregamos un divisor. Con 1 kiloohm arriba y 2 kiloohms hacia tierra obtenemos
+> aproximadamente 3.3 voltios. Antes de conectar el GPIO, medimos la salida real.
 
-> En lugar de preguntar “¿cómo conecto esto?”, entregamos las fuentes exactas de esta placa y este componente.
+Verificar resistencias, tolerancias y voltaje con el montaje exacto.
 
-**Shiara:**
+### Slide 15 — 1:15
 
-> `current-wiring.md` describe el montaje real, no el circuito ideal que creemos haber construido. También registra lógica de 3.3 V, pines ocupados y piezas que no toleran 5 V.
+> Probamos el sensor solo. Imprimimos distancia, movemos un objeto y comparamos con
+> una regla. Una cifra que cambia no basta; debe cambiar en la dirección correcta
+> y con una precisión útil.
 
-**Anthony:**
+### Slide 16 — 1:15
 
-> La memoria del modelo deja de ser la autoridad. Las fuentes del proyecto son la autoridad.
+> Probamos los motores con las ruedas elevadas. Primero medimos VM, luego ponemos
+> STBY en alto y giramos un motor a la vez. Así detectamos polaridad y dirección
+> sin que el robot salga disparado.
 
-### 5. Exponer incertidumbre, máximo 2:30
+### Slide 17 — 1:15
 
-**En pantalla:** prompt restringido.
+> La integración inicial es pequeña. Si la distancia es menor a 20 centímetros,
+> detenemos y giramos. En cualquier otro caso avanzamos.
 
-**Anthony:**
+El código mostrado es pseudocódigo; el firmware real debe coincidir con la
+biblioteca y los pines verificados.
 
-> Antes de cablear pedimos: verifica voltajes y pines en las fuentes; expón supuestos; marca decisiones peligrosas y cita el datasheet.
+### Slide 18 — 1:00
 
-> No pedimos solamente una respuesta. Pedimos las condiciones que podrían convertirla en un error.
+> Cada estado deja evidencia en serial y en el movimiento. El log debe decir
+> LEYENDO, AVANZANDO, DETENIDO o GIRANDO para conectar la decisión del software con
+> el resultado físico.
 
-**Shiara:**
+### Slide 19 — 0:45
 
-> Si aparece “asumo que este pin tolera 5 V”, detenemos el montaje. Primero verificamos el supuesto; después conectamos el cable.
+> Ahora ejecutamos el robot. El sensor funciona, pero las ruedas no giran. No
+> cambiamos código todavía.
 
-**Anthony:**
+Iniciar la demo física.
 
-> La confianza lingüística no es evidencia. La evidencia decide.
+### Slide 20 — 1:00
 
-### 6. Debugging y loop, máximo 2:30
+> Ordenamos tres hipótesis: falta alimentación en VM, STBY está bajo o las señales
+> PWM están mal. Empezamos por la prueba más barata y menos invasiva.
 
-**En pantalla:** “No funciona no basta” y el loop completo.
+### Slide 21 — 3:00
 
-**Shiara:**
+> Configuramos el multímetro en voltaje DC. Punta negra a GND y punta roja a VM.
+> Esperamos aproximadamente 6 voltios. Medimos 0.0.
 
-> Terminamos de montar y el display no enciende. La tentación es escribir: “No funciona, arréglalo”.
+> Esa lectura prioriza batería, switch y continuidad. Todavía no hay evidencia
+> para tocar el firmware.
 
-**Anthony:**
+Después de corregir la alimentación, volver a medir VM antes de activar los
+motores.
 
-> En cambio pedimos tres hipótesis y un experimento seguro que permita distinguirlas. No queremos diez arreglos al azar; queremos la medición más informativa.
+### Slide 22 — 1:00
 
-**Acción:** recorrer visualmente la línea del loop.
+> El agente recibe evidencia concreta: VM igual a 0.0 voltios, USB activo y sensor
+> estable. Propone revisar el camino de potencia. Corregimos, medimos cerca de 6
+> voltios y recién entonces probamos movimiento.
 
-**Anthony:**
+### Slide 23 — 1:00
 
-> Síntoma, hipótesis, experimento, medición y actualización. El output del modelo no termina el proceso: propone el siguiente paso.
+> Buscamos errores recurrentes: otra revisión de placa, 5 voltios directos al GPIO,
+> motores desde un pin, tierra sin compartir, STBY ignorado y pines que compilan
+> pero no sirven en el montaje.
 
-**Shiara:**
+### Slide 24 — 0:45
 
-> Cada medición elimina posibilidades y devuelve realidad al contexto.
+> Antes de energizar revisamos polaridad, voltajes, tierra común, continuidad,
+> pines exactos y ruedas elevadas. La lista es corta para que realmente se use.
 
-**Transición de Anthony:**
+### Slide 25 — 1:00
 
-> En vez de explicarlo otra vez en otra slide, vamos a hacerlo.
+> Definimos terminado con cuatro pruebas físicas: medir, avanzar, detenerse a 20
+> centímetros y girar. Reemplazaremos esta ilustración por la foto y los
+> resultados del montaje real.
 
-### 7. Live Vibe Hardware Time, máximo 4:15
+### Slide 26 — 0:30
 
-#### Abrir la cámara, 0:30
+> El ciclo es contexto, propuesta, verificación, medición y actualización. Se
+> repite para sensor, motores e integración.
 
-**En pantalla:** “LIVE VIBE HARDWARE TIME” y “SLIDES → CAMERA APP → HARDWARE TABLE”.
+### Slide 27 — 0:30
 
-**Anthony:**
+> La IA propone. La realidad responde.
 
-> Llegó Live Vibe Hardware Time. Pausamos las slides y cambiamos a la cámara de la mesa.
+> Construye con contexto. Verifica antes de conectar.
 
-**Acción de Anthony:** cambiar del navegador a la app de cámara ya abierta. Confirmar visualmente el plano antes de que Shiara empiece.
+## Montaje seguro de la demo
 
-#### Montaje y síntoma, 0:35
+- Robot elevado durante la prueba de motores.
+- Divisor de voltaje instalado antes de energizar el HC-SR04.
+- Switch de motores accesible.
+- Multímetro configurado y probado.
+- Puntos VM y GND identificados.
+- Ningún conductor suelto.
+- Respuesta del agente guardada localmente.
+- Video corto de respaldo.
 
-**Shiara:**
+## Plan B
 
-> Aquí están el controlador, el [DISPLAY/SENSOR REAL] y el punto donde esperamos 3.3 V. El montaje está listo, pero el display está apagado.
+- Sin internet: usar la respuesta guardada.
+- Sin cámara: mostrar una foto del multímetro y narrar el valor.
+- Si VM no mide 0 V: usar el valor real y explicar cómo cambia la hipótesis.
+- Si el robot no gira después de corregir potencia: detener la demo y usar video.
+- No improvisar conexiones durante la charla.
 
-**Acción:** señalar las partes. No mover conexiones.
+## Antes de presentar
 
-#### Hipótesis, 0:50
-
-**Anthony:**
-
-> El agente ya tiene los datasheets y el cableado. Le damos el síntoma y pedimos tres hipótesis y la primera prueba segura.
-
-**Acción de Anthony:** cambiar de la cámara al agente y enviar el prompt preparado.
-
-```text
-El display no enciende. Genera las tres hipótesis más probables.
-No sugieras modificaciones todavía. Propón el primer experimento seguro
-que mejor permita distinguirlas e indica el valor esperado.
-```
-
-**Anthony:**
-
-> Propone alimentación, cableado o comunicación. Primero mediremos la alimentación.
-
-Si tarda más de diez segundos, mostrar la respuesta guardada inmediatamente.
-
-#### Medición, 0:55
-
-**Acción de Anthony:** volver a la app de cámara antes de que Shiara mida.
-
-**Shiara:**
-
-> El multímetro está en voltaje DC. Esperamos 3.3 V.
-
-**Acción:** medir y mantener el valor visible dos segundos.
-
-**Shiara:**
-
-> Medimos 0.0 V. Esto es un dato del mundo, no una suposición.
-
-**Anthony:**
-
-> No tocamos código. Sin alimentación, cambiar una librería no arregla nada.
-
-#### Actualizar y reparar, 1:05
-
-**Acción de Anthony:** cambiar al agente y enviar:
-
-```text
-Esperábamos 3.3 V y medimos 0.0 V en alimentación.
-Actualiza las hipótesis y propone la siguiente comprobación segura.
-```
-
-**Anthony:**
-
-> Ahora prioriza fuente, interruptor, cable y regulador. Comunicación deja de ser la primera sospecha.
-
-**Shiara:**
-
-> Recorremos esa ruta. Este interruptor está apagado [o esta conexión está suelta]. Lo corregimos y medimos otra vez.
-
-**Acción de Anthony:** volver a la app de cámara.
-
-**Acción de Shiara:** reparar, medir 3.3 V y activar el proyecto.
-
-**Shiara:**
-
-> Ahora tenemos 3.3 V y el display enciende.
-
-#### Volver a las slides, 0:20
-
-**Anthony:**
-
-> La IA propuso. La medición redujo la incertidumbre. La realidad respondió. Volvemos al mapa.
-
-**Acción de Anthony:** cambiar directamente de la app de cámara al navegador y avanzar al punto 8.
-
-## Plan B de la demo
-
-| Problema | Respuesta inmediata |
-| --- | --- |
-| La app no detecta la cámara | Ejecutar la secuencia visual con `R` y narrar las acciones. |
-| `Cmd-Tab` abre otra ventana | Seleccionar la app desde el Dock y continuar; no intentar reordenar ventanas en directo. |
-| Falla internet | Mostrar la respuesta guardada y continuar la medición. |
-| La medida no es 0.0 V | Leer el valor real: “La realidad invalidó el escenario preparado”. Mostrar el respaldo. |
-| No enciende al reparar | Detener cambios, mostrar el proyecto de respaldo y cerrar el loop verbalmente. |
-| Quedan menos de 2 minutos | Omitir el agente en vivo y hacer síntoma → medición → reparación. |
-
-Frase de recuperación:
-
-> El plan del modelo no manda. La observación real manda, y actualizamos desde ahí.
-
-### 8. Tres reglas, máximo 1:00
-
-**En pantalla:** Ground, Constrain, Close the loop.
-
-**Shiara:**
-
-> Uno: ground. Entrega especificaciones y estado real.
-
-**Anthony:**
-
-> Dos: constrain. Expón supuestos y riesgos. Tres: close the loop. Mide y devuelve el resultado al contexto.
-
-### 9. Cierre, máximo 1:00
-
-**En pantalla:** frase final y QR.
-
-**Anthony:**
-
-> El objetivo no es hacer que la IA sepa electrónica perfectamente.
-
-**Shiara:**
-
-> Es construir un sistema donde pueda estar equivocada de forma segura.
-
-**Ambos, alternando:**
-
-> La IA nos da hipótesis.
-
-> La realidad nos da respuestas.
-
-**Anthony:**
-
-> El repo, los prompts, el checklist y nuestra comunidad están en el QR. Gracias.
-
-**Acción:** dejar el QR durante las preguntas.
-
-## Ensayos
-
-### Ensayo de contenido
-
-- Sustituir todos los textos entre corchetes.
-- Confirmar que los errores presentados como reales sí ocurrieron.
-- Hablar durante el tiempo de contenido, no llenar el colchón.
-
-### Ensayo técnico
-
-- Probar conexión de cámara, permisos del MacBook, proyector, agente, multímetro y respaldo.
-- Ensayar la secuencia slides → cámara → agente → cámara → agente → cámara → slides.
-- Ensayar todos los planes B sin ayuda externa.
-- Verificar que la demo completa tarda menos de 3:30 sin colchón.
-
-### Ensayo cronometrado
-
-- Hacer una pasada completa sin detenerse.
-- Si la demo empieza después de 13:45, recortar ejemplos, no el loop.
-- Si las slides no vuelven a 18:00, hacer las tres reglas verbalmente y cerrar.
-- Nunca superar 20:00 intentando recuperar contenido omitido.
+1. Montar y medir el robot completo.
+2. Confirmar revisiones y datasheets.
+3. Reemplazar la ilustración por fotos propias.
+4. Sustituir valores ilustrativos por mediciones reales.
+5. Confirmar el pin map y el firmware.
+6. Ensayar la demo de slides 19–22 en menos de seis minutos.
+7. Verificar el QR.
