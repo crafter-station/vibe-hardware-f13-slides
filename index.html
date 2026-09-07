@@ -165,22 +165,30 @@
       </section>
 
       <section class="slide" data-slide="10">
-        <h2>El prompt define cómo debe razonar el agente.</h2>
-        <div class="prompt-only">
-          <pre><code>Usa solo el inventario entregado.
+        <h2>En Cursor, pedimos arquitectura antes de código.</h2>
+        <div class="agent-dialogue">
+          <article>
+            <span>CURSOR · GPT-5.6 SOL HIGH</span>
+            <pre><code>Usa solo este inventario.
 
-Antes de conectar:
-1. Lista voltajes de entrada y salida.
-2. Cita la fuente de cada límite.
-3. Expón los supuestos.
-4. Marca cualquier riesgo.
-5. Propón una prueba sin energía.
+Devuelve conexiones, voltajes,
+fuentes, riesgos y una prueba
+sin energía.
 
-Genera código después de aprobar el pin map.</code></pre>
+Detente antes de generar código.</code></pre>
+          </article>
+          <article>
+            <span>SALIDA REQUERIDA</span>
+            <p><b>Mapa</b> Origen → destino</p>
+            <p><b>Fuente</b> Datasheet exacto</p>
+            <p><b>Riesgo</b> Conexión bloqueada</p>
+            <p><b>Prueba</b> Siguiente evidencia</p>
+          </article>
         </div>
         <aside>
-          El prompt no reemplaza las fuentes. Convierte el proceso de revisión en
-          una salida obligatoria.
+          Esta interacción es un ejemplo reproducible. Reemplazarla por una captura
+          de la conversación real. El prompt convierte la revisión en una salida
+          obligatoria, pero no reemplaza las fuentes.
         </aside>
       </section>
 
@@ -245,8 +253,12 @@ Genera código después de aprobar el pin map.</code></pre>
       </section>
 
       <section class="slide" data-slide="15">
-        <h2>Probamos el sensor sin motores.</h2>
-        <div class="code-layout">
+        <h2>Cursor genera la prueba más pequeña del sensor.</h2>
+        <div class="agent-triptych">
+          <article>
+            <span>INSTRUCCIÓN</span>
+            <p>Lee distancia por serial. Usa los pines aprobados. Excluye motores.</p>
+          </article>
           <pre><code>const distance = readDistanceCm();
 Serial.println(distance);
 
@@ -259,8 +271,9 @@ delay(100);</code></pre>
           </div>
         </div>
         <aside>
-          Mover un objeto y confirmar que la lectura cambia. Comparar con una regla;
-          no integrar motores hasta que la entrada sea estable.
+          Esta interacción es un ejemplo reproducible. En la charla, escribir la
+          instrucción en Cursor, revisar el diff y ejecutar. Mover un objeto,
+          comparar con una regla y mantener los motores fuera de esta prueba.
         </aside>
       </section>
 
@@ -359,33 +372,44 @@ if (distance &lt; 20) {
       </section>
 
       <section class="slide" data-slide="22">
-        <h2>La medición vuelve al contexto del agente.</h2>
-        <div class="feedback-loop">
-          <article><span>OBSERVADO</span><p>VM = 0.0 V. USB activo. Sensor estable.</p></article>
-          <i>→</i>
-          <article><span>SIGUIENTE PRUEBA</span><p>Revisar switch, batería y continuidad hasta VM.</p></article>
-          <i>→</i>
-          <article class="accent"><span>RESULTADO</span><p>VM ≈ 6 V. Las ruedas giran.</p></article>
+        <h2>Con una medición, el agente propone una prueba concreta.</h2>
+        <div class="debug-chat">
+          <article>
+            <span>NOSOTROS</span>
+            <p>VM = 0.0 V. USB activo. Sensor estable. Prioriza una prueba sin cambiar firmware.</p>
+          </article>
+          <article class="accent">
+            <span>CURSOR · GPT-5.6 SOL HIGH</span>
+            <p>Mide batería antes y después del switch. Corrige el primer punto que pierda voltaje.</p>
+          </article>
         </div>
+        <div class="agent-result">VM ≈ 6 V → habilitamos motores → las ruedas giran</div>
         <aside>
-          El agente recibe mediciones, no “sigue fallando”. Eso evita respuestas
-          genéricas y mantiene una hipótesis falsable.
+          Esta interacción es un ejemplo reproducible. Reemplazarla por la
+          conversación y las mediciones reales. El agente recibe evidencia concreta
+          y devuelve una prueba falsable.
         </aside>
       </section>
 
       <section class="slide" data-slide="23">
-        <h2>Estas son las alucinaciones que buscamos.</h2>
-        <div class="mistakes-grid">
-          <article><span>01</span><b>Otra revisión de placa</b></article>
-          <article><span>02</span><b>5 V directo al GPIO</b></article>
-          <article><span>03</span><b>Motor desde un pin</b></article>
-          <article><span>04</span><b>GND sin compartir</b></article>
-          <article><span>05</span><b>STBY ignorado</b></article>
-          <article><span>06</span><b>Pin válido en código, incorrecto en hardware</b></article>
+        <h2>El síntoma solo produce respuestas genéricas.</h2>
+        <div class="failure-compare">
+          <article>
+            <span>SÍNTOMA SOLO</span>
+            <code>“El robot se reinicia. Arréglalo.”</code>
+            <p>Delay, reintentos y cambios de librería.</p>
+          </article>
+          <article class="accent">
+            <span>SÍNTOMA + EVIDENCIA</span>
+            <code>Brownout al arrancar motores. La línea de 3.3 V cae.</code>
+            <p>Revisar alimentación antes de cambiar firmware.</p>
+          </article>
         </div>
+        <div class="solution-path">Potencia separada → GND común → medir otra vez</div>
         <aside>
-          Estas fallas suenan plausibles porque el modelo completa patrones. Se
-          detectan con fuentes exactas y mediciones.
+          Este es un segundo ejemplo reproducible. Si aparece un brownout real,
+          reemplazarlo con el log y la medición del montaje. La misma falla puede
+          provocar resets, lecturas inestables y diagnósticos de software erróneos.
         </aside>
       </section>
 
@@ -427,7 +451,7 @@ if (distance &lt; 20) {
       </section>
 
       <section class="slide" data-slide="26">
-        <h2>El workflow completo cabe en cinco pasos.</h2>
+        <h2>Vibecoding hardware = cambiar, medir y actualizar.</h2>
         <div class="workflow">
           <article><span>1</span><b>Contexto</b><p>Fuentes y montaje.</p></article>
           <article><span>2</span><b>Propuesta</b><p>Conexiones y código.</p></article>
