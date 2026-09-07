@@ -3,199 +3,492 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#090b0f" />
-    <meta name="description" content="Un mapa sobre nuestro workflow con IA para construir hardware" />
-    <title>Vibe Hardware · El mapa</title>
+    <meta name="theme-color" content="#0a0c0b" />
+    <meta
+      name="description"
+      content="Nuestro workflow con IA para construir y verificar hardware"
+    />
+    <title>Vibe Hardware · F13</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body class="overview">
-    <div class="boot" id="boot" aria-hidden="true">
-      <div class="boot-map"><b>F13 / FIELD MAP</b><i></i><span>trazando conexiones...</span></div>
-    </div>
-
-    <main class="viewport" id="viewport" aria-label="Mapa interactivo de la presentación">
-      <div class="world" id="world">
-        <div class="world-grid" aria-hidden="true"></div>
-        <div class="map-coordinate c1">00° CONTEXT</div>
-        <div class="map-coordinate c2">03.3V / SAFE ZONE</div>
-        <div class="map-coordinate c3">PHYSICAL REALITY</div>
-
-        <svg class="route-map" viewBox="0 0 7200 4800" aria-hidden="true">
-          <path class="route-halo" d="M900 850 C1450 450 1900 450 2450 700 S3450 1250 4000 950 S5100 350 5600 700 C6000 1200 5200 1800 3350 2050 C2600 2500 1800 3300 2500 3900 S3600 3300 4300 3500 S5250 4300 5900 4000" />
-          <path class="route-line" d="M900 850 C1450 450 1900 450 2450 700 S3450 1250 4000 950 S5100 350 5600 700 C6000 1200 5200 1800 3350 2050 C2600 2500 1800 3300 2500 3900 S3600 3300 4300 3500 S5250 4300 5900 4000" />
-          <path class="route-current" d="M900 850 C1450 450 1900 450 2450 700 S3450 1250 4000 950 S5100 350 5600 700 C6000 1200 5200 1800 3350 2050 C2600 2500 1800 3300 2500 3900 S3600 3300 4300 3500 S5250 4300 5900 4000" />
-          <path class="branch" d="M2450 700 l-150 -330 M4000 950 l220 -330 M3350 2050 l-250 -250 M4300 3500 l190 -330" />
-        </svg>
-
-        <div class="map-legend" aria-hidden="true">
-          <span>THE SAFE-TO-BE-WRONG ROUTE</span>
-          <b>GROUND</b><i></i><b>CONSTRAIN</b><i></i><b>MEASURE</b><i></i><b>UPDATE</b>
+  <body>
+    <main class="deck" aria-label="Presentación Vibe Hardware">
+      <section class="slide active" data-slide="1">
+        <div class="title-slide">
+          <h1>Nuestro workflow con IA para construir hardware</h1>
+          <p>De software a un robot verificable.</p>
         </div>
+        <aside>
+          <b>Shiara:</b> Hoy vamos a construir un primer proyecto de hardware de
+          principio a fin usando un agente, sin delegarle las decisiones eléctricas.
+        </aside>
+      </section>
 
-        <button class="map-pin" data-target="0" style="--x:900px;--y:850px" type="button"><span>01</span><small>START</small></button>
-        <button class="map-pin" data-target="1" style="--x:2450px;--y:700px" type="button"><span>02</span><small>STAKES</small></button>
-        <button class="map-pin" data-target="2" style="--x:4000px;--y:950px" type="button"><span>03</span><small>GROUND</small></button>
-        <button class="map-pin" data-target="3" style="--x:5600px;--y:700px" type="button"><span>04</span><small>CONTEXT</small></button>
-        <button class="map-pin" data-target="4" style="--x:6100px;--y:1900px" type="button"><span>05</span><small>CONSTRAIN</small></button>
-        <button class="map-pin" data-target="5" style="--x:3350px;--y:2050px" type="button"><span>06</span><small>DEBUG LOOP</small></button>
-        <button class="map-pin" data-target="6" style="--x:2500px;--y:3900px" type="button"><span>07</span><small>DEMO TIME</small></button>
-        <button class="map-pin" data-target="7" style="--x:4300px;--y:3500px" type="button"><span>08</span><small>RULES</small></button>
-        <button class="map-pin" data-target="8" style="--x:5900px;--y:4000px" type="button"><span>09</span><small>JOIN</small></button>
-
-        <section class="zone intro-zone" data-x="900" data-y="850" data-z="1" aria-label="Inicio del mapa">
-          <div class="zone-index">FIELD NOTE 01 / F13</div>
-          <h1>Nuestro workflow<br />con IA para construir<br /><em>hardware</em></h1>
-          <p class="lead">IA propone. Hardware responde.</p>
-          <div class="names">SHIARA <i>↔</i> ANTHONY</div>
-          <figure class="sticker board-sticker tilt-right">
-            <span class="tape"></span><img src="./public/assets/esp32.jpg" alt="Placa ESP32" />
-            <figcaption>ESP32 // START HERE</figcaption>
-          </figure>
-          <aside><b>Shiara:</b> mostrar o activar el proyecto terminado. <br /><b>Anthony:</b> “Este no es un deck. Es el mapa del circuito que construimos para que la IA pueda equivocarse sin romper nada.”</aside>
-        </section>
-
-        <section class="zone stakes-zone" data-x="2450" data-y="700" data-z="1.04" aria-label="El costo del error">
-          <div class="zone-index">WHY THIS MAP EXISTS</div>
-          <div class="stakes-copy">
-            <p>En software, un error de la IA</p><h2>hace <s>crash.</s></h2>
-            <p>En hardware, un error de la IA</p><h2 class="hot">hace humo.</h2>
+      <section class="slide" data-slide="2">
+        <div class="visual-split">
+          <div>
+            <h2>Este es el resultado que vamos a construir.</h2>
+            <p class="lead">Un robot de dos ruedas que mide, decide y gira.</p>
           </div>
-          <div class="smoke-doodle" aria-hidden="true"><i></i><i></i><i></i><b>5V?!</b></div>
-          <div class="meme-sticker smoke-meme">MAGIC SMOKE<small>SINGLE USE ONLY</small></div>
-          <figure class="sticker led-sticker tilt-left">
-            <span class="tape red"></span><img src="./public/assets/led.jpg" alt="LED rojo" />
-            <figcaption>FRÁGIL / NO FREÍR</figcaption>
+          <figure class="robot-figure">
+            <img src="./public/assets/robot-plan.svg" alt="Plan del robot de dos ruedas" />
           </figure>
-          <aside><b>Anthony:</b> dejar respirar la comparación. <br /><b>Shiara:</b> señalar físicamente una pieza frágil: “En este mundo, una respuesta plausible puede tener costo material.”</aside>
-        </section>
+        </div>
+        <aside>
+          Mostrar el robot físico si ya existe. Esta ilustración representa la
+          configuración objetivo y debe reemplazarse por una foto del montaje real.
+        </aside>
+      </section>
 
-        <section class="zone grounding-zone" data-x="4000" data-y="950" data-z="1" aria-label="La IA no ve la realidad">
-          <div class="zone-index">GROUNDING GAP</div>
-          <h2>La IA no ve<br /><em>tu circuito.</em></h2>
-          <div class="gap-diagram">
-            <div class="llm-blob"><b>LLM</b><small>texto</small></div>
-            <strong>≠</strong>
-            <div class="physical-chip"><b>3.3V</b><small>señal</small></div>
+      <section class="slide" data-slide="3">
+        <h2>Primero definimos comportamiento, no componentes.</h2>
+        <div class="sequence" aria-label="Comportamiento esperado">
+          <article><span>1</span><b>Avanza</b></article>
+          <i>→</i>
+          <article><span>2</span><b>Mide distancia</b></article>
+          <i>→</i>
+          <article><span>3</span><b>Se detiene a 20 cm</b></article>
+          <i>→</i>
+          <article><span>4</span><b>Gira y continúa</b></article>
+        </div>
+        <aside>
+          Este comportamiento es el contrato de aceptación. Todo circuito y todo
+          código debe acercarnos a una de estas cuatro capacidades.
+        </aside>
+      </section>
+
+      <section class="slide" data-slide="4">
+        <h2>Estas son las piezas sobre la mesa.</h2>
+        <div class="parts-grid">
+          <figure>
+            <img src="./public/assets/esp32-dev-board.jpg" alt="Placa de desarrollo ESP32" />
+            <figcaption><b>ESP32</b><span>Control y código</span></figcaption>
+          </figure>
+          <figure>
+            <img src="./public/assets/hc-sr04.jpg" alt="Sensor ultrasónico HC-SR04" />
+            <figcaption><b>HC-SR04</b><span>Distancia</span></figcaption>
+          </figure>
+          <article><b>TB6612FNG</b><span>Driver para dos motores</span></article>
+          <article><b>2 motores DC</b><span>Movimiento diferencial</span></article>
+          <article><b>4 pilas AA</b><span>Alimentación de motores</span></article>
+          <article><b>Resistencias</b><span>Protección de ECHO</span></article>
+        </div>
+        <aside>
+          El inventario es cerrado. El agente solo puede proponer soluciones con
+          estas piezas. Confirmar la revisión exacta de cada módulo antes del evento.
+        </aside>
+      </section>
+
+      <section class="slide" data-slide="5">
+        <h2>Cada pieza tiene una responsabilidad.</h2>
+        <div class="system-flow">
+          <article><small>ENTRADA</small><b>HC-SR04</b><span>distancia</span></article>
+          <i>→</i>
+          <article class="accent"><small>DECISIÓN</small><b>ESP32</b><span>lógica</span></article>
+          <i>→</i>
+          <article><small>POTENCIA</small><b>TB6612FNG</b><span>corriente</span></article>
+          <i>→</i>
+          <article><small>SALIDA</small><b>Motores</b><span>movimiento</span></article>
+        </div>
+        <aside>
+          Pensarlo como software ayuda: entrada, decisión y salida. El driver existe
+          porque el microcontrolador no puede alimentar motores directamente.
+        </aside>
+      </section>
+
+      <section class="slide" data-slide="6">
+        <h2>El robot tiene dos dominios de energía.</h2>
+        <div class="power-grid">
+          <article>
+            <span>LÓGICA</span>
+            <strong>USB → ESP32 → 3.3 V</strong>
+            <p>GPIO, señales y control.</p>
+          </article>
+          <article>
+            <span>MOTORES</span>
+            <strong>4 × AA → VM → motores</strong>
+            <p>Corriente y movimiento.</p>
+          </article>
+        </div>
+        <div class="shared-ground">Ambos comparten GND. No comparten la misma carga.</div>
+        <aside>
+          Separar lógica y potencia evita resets y falsas conclusiones. Las tierras
+          deben estar unidas para que las señales tengan la misma referencia.
+        </aside>
+      </section>
+
+      <section class="slide" data-slide="7">
+        <h2>Construimos el robot por etapas.</h2>
+        <div class="build-stages">
+          <article><span>1</span><b>Sin energía</b><p>Revisar continuidad.</p></article>
+          <article><span>2</span><b>Sensor</b><p>Leer distancia.</p></article>
+          <article><span>3</span><b>Motores</b><p>Girar elevados.</p></article>
+          <article><span>4</span><b>Integración</b><p>Unir decisiones.</p></article>
+          <article><span>5</span><b>Movimiento</b><p>Probar en el piso.</p></article>
+        </div>
+        <aside>
+          Cada etapa tiene una prueba de salida. Si falla, el espacio de búsqueda se
+          mantiene pequeño.
+        </aside>
+      </section>
+
+      <section class="slide" data-slide="8">
+        <h2>El agente empieza con contexto.</h2>
+        <div class="context-list">
+          <article><b>Fuentes</b><p>Datasheets exactos y pinout de la placa.</p></article>
+          <article><b>Inventario</b><p>Componentes y resistencias disponibles.</p></article>
+          <article><b>Restricciones</b><p>Voltajes, corriente, pines y alimentación.</p></article>
+          <article><b>Estado real</b><p>Conexiones y mediciones confirmadas.</p></article>
+        </div>
+        <aside>
+          No usamos la memoria del modelo como fuente. El contexto debe describir el
+          hardware exacto que tenemos enfrente.
+        </aside>
+      </section>
+
+      <section class="slide" data-slide="9">
+        <h2>Reservamos los pines antes de pedir código.</h2>
+        <div class="pin-table" role="table" aria-label="Asignación inicial de pines">
+          <div class="table-head"><span>SEÑAL</span><span>GPIO</span><span>REGLA</span></div>
+          <div><b>TRIG</b><span>17</span><span>Salida digital</span></div>
+          <div><b>ECHO</b><span>18</span><span>Entrada protegida</span></div>
+          <div><b>PWMA / PWMB</b><span>25 / 13</span><span>PWM</span></div>
+          <div><b>AIN1 / AIN2</b><span>26 / 27</span><span>Dirección A</span></div>
+          <div><b>BIN1 / BIN2</b><span>14 / 32</span><span>Dirección B</span></div>
+          <div><b>STBY</b><span>33</span><span>Debe estar alto</span></div>
+        </div>
+        <aside>
+          Esta asignación es ilustrativa. Confirmar el pinout de la placa exacta,
+          evitar pines reservados o de arranque y registrar la decisión antes de
+          generar firmware.
+        </aside>
+      </section>
+
+      <section class="slide" data-slide="10">
+        <h2>En Cursor, pedimos arquitectura antes de código.</h2>
+        <div class="agent-dialogue">
+          <article>
+            <span>CURSOR · GPT-5.6 SOL HIGH</span>
+            <pre><code>Usa solo este inventario.
+
+Devuelve conexiones, voltajes,
+fuentes, riesgos y una prueba
+sin energía.
+
+Detente antes de generar código.</code></pre>
+          </article>
+          <article>
+            <span>SALIDA REQUERIDA</span>
+            <p><b>Mapa</b> Origen → destino</p>
+            <p><b>Fuente</b> Datasheet exacto</p>
+            <p><b>Riesgo</b> Conexión bloqueada</p>
+            <p><b>Prueba</b> Siguiente evidencia</p>
+          </article>
+        </div>
+        <aside>
+          Esta interacción es un ejemplo reproducible. Reemplazarla por una captura
+          de la conversación real. El prompt convierte la revisión en una salida
+          obligatoria, pero no reemplaza las fuentes.
+        </aside>
+      </section>
+
+      <section class="slide" data-slide="11">
+        <h2>El agente propone un mapa de conexiones.</h2>
+        <div class="wiring-list">
+          <div><span>GPIO 17</span><i>→</i><span>TRIG</span><b class="safe">PROPUESTO</b></div>
+          <div class="danger"><span>ECHO · 5 V</span><i>→</i><span>GPIO 18 · 3.3 V</span><b>RIESGO</b></div>
+          <div><span>GPIO 25 / 13</span><i>→</i><span>PWMA / PWMB</span><b class="safe">PROPUESTO</b></div>
+          <div><span>GPIO 33</span><i>→</i><span>STBY</span><b class="safe">PROPUESTO</b></div>
+        </div>
+        <aside>
+          El mapa del agente es una propuesta revisable. Conectamos después de
+          validar cada línea.
+        </aside>
+      </section>
+
+      <section class="slide" data-slide="12">
+        <h2>Validamos cada conexión con la misma plantilla.</h2>
+        <div class="validation-grid">
+          <article><span>1</span><b>Origen</b><p>Voltaje y tipo de salida.</p></article>
+          <article><span>2</span><b>Destino</b><p>Límite y dirección del pin.</p></article>
+          <article><span>3</span><b>Fuente</b><p>Documento y revisión exacta.</p></article>
+          <article><span>4</span><b>Prueba</b><p>Continuidad o medición segura.</p></article>
+        </div>
+        <aside>
+          Esta plantilla encuentra incompatibilidades antes de que el circuito las
+          encuentre por nosotros.
+        </aside>
+      </section>
+
+      <section class="slide" data-slide="13">
+        <h2>ECHO entrega 5 V. El GPIO trabaja a 3.3 V.</h2>
+        <div class="voltage-compare">
+          <div><span>HC-SR04 ECHO</span><strong>5 V</strong></div>
+          <i>≠</i>
+          <div><span>ESP32 GPIO</span><strong>3.3 V</strong></div>
+        </div>
+        <div class="risk-note">Conectar directamente puede dañar la entrada.</div>
+        <aside>
+          El código puede compilar y la conexión puede parecer normal. El límite
+          eléctrico sigue siendo incompatible.
+        </aside>
+      </section>
+
+      <section class="slide" data-slide="14">
+        <h2>Corregimos la señal antes de conectarla.</h2>
+        <div class="divider-diagram" aria-label="Divisor de voltaje para ECHO">
+          <div><small>HC-SR04</small><b>ECHO · 5 V</b></div>
+          <i>→</i>
+          <div class="resistor"><small>R1</small><b>1 kΩ</b></div>
+          <i>→</i>
+          <div class="node"><small>GPIO 18</small><b>≈ 3.3 V</b></div>
+          <i>→</i>
+          <div class="resistor"><small>R2</small><b>2 kΩ → GND</b></div>
+        </div>
+        <div class="formula">Vout = Vin × R2 / (R1 + R2)</div>
+        <aside>
+          Este valor es un ejemplo reproducible. Verificar tolerancias y medir la
+          salida real antes de conectarla al GPIO.
+        </aside>
+      </section>
+
+      <section class="slide" data-slide="15">
+        <h2>Cursor genera la prueba más pequeña del sensor.</h2>
+        <div class="agent-triptych">
+          <article>
+            <span>INSTRUCCIÓN</span>
+            <p>Lee distancia por serial. Usa los pines aprobados. Excluye motores.</p>
+          </article>
+          <pre><code>const distance = readDistanceCm();
+Serial.println(distance);
+
+delay(100);</code></pre>
+          <div class="serial-output">
+            <span>SERIAL · 115200</span>
+            <code>46.2 cm</code>
+            <code>31.8 cm</code>
+            <code class="active-reading">19.6 cm</code>
           </div>
-          <div class="error-tags"><span>GPIO?</span><span>VOLTAJE?</span><span>PINOUT?</span></div>
-          <figure class="sticker micro-sticker tilt-right">
-            <span class="tape blue"></span><img src="./public/assets/microcontroller.jpg" alt="Macro de un microcontrolador sobre una placa" />
-            <figcaption>THE MODEL HAS NEVER MET THIS BOARD</figcaption>
-          </figure>
-          <aside><b>Anthony:</b> “El modelo conoce texto sobre placas. No sabe qué compramos, cómo está cableado o qué voltaje medimos.” <br /><b>Shiara:</b> aportar dos fallos reales del proyecto.</aside>
-        </section>
+        </div>
+        <aside>
+          Esta interacción es un ejemplo reproducible. En la charla, escribir la
+          instrucción en Cursor, revisar el diff y ejecutar. Mover un objeto,
+          comparar con una regla y mantener los motores fuera de esta prueba.
+        </aside>
+      </section>
 
-        <section class="zone context-zone" data-x="5600" data-y="700" data-z=".96" aria-label="Datasheets y contexto">
-          <div class="zone-index">SUPPLY THE WORLD</div>
-          <h2>El hardware también<br />tiene un <em>codebase.</em></h2>
-          <p class="datasheet-line">Se llama <b>datasheet.</b></p>
-          <div class="loose-files mono">
-            <div><span>PDF</span> esp32-s3.pdf</div>
-            <div><span>MD</span> constraints.md</div>
-            <div class="selected"><span>MD</span> current-wiring.md <i>← reality now</i></div>
+      <section class="slide" data-slide="16">
+        <h2>Probamos los motores con las ruedas elevadas.</h2>
+        <div class="motor-test">
+          <pre><code>digitalWrite(STBY, HIGH);
+setMotorA(80);
+setMotorB(80);</code></pre>
+          <div>
+            <p><span>1</span> Medir VM</p>
+            <p><span>2</span> Confirmar STBY alto</p>
+            <p><span>3</span> Girar un motor a la vez</p>
+            <p><span>4</span> Verificar dirección</p>
           </div>
-          <div class="constraint-note mono"><b>logic:</b> 3.3V<br /><b>never:</b> assume 5V</div>
-          <figure class="sticker resistor-sticker tilt-right">
-            <span class="tape"></span><img src="./public/assets/resistors.jpg" alt="Resistencias electrónicas" />
-            <figcaption>CONSTRAINTS ARE FEATURES</figcaption>
-          </figure>
-          <aside><b>Anthony:</b> “En software damos al agente el repo. Aquí el repo son datasheets, inventario y cableado actual.” <br /><b>Shiara:</b> explicar que current-wiring.md refleja el montaje real, no el ideal.</aside>
-        </section>
+        </div>
+        <aside>
+          El robot se eleva para que una dirección incorrecta no lo lance fuera de
+          la mesa. Primero un motor, luego el otro.
+        </aside>
+      </section>
 
-        <section class="zone prompt-zone" data-x="6100" data-y="1900" data-z="1" aria-label="Prompt con restricciones">
-          <div class="zone-index">DON'T ASK FOR AN ANSWER</div>
-          <h2>Pide <em>incertidumbre.</em><br />No una respuesta.</h2>
-          <div class="loose-terminal mono">
-            <p><b>›</b> Antes de cablear:</p>
-            <ol><li>verifica voltajes + pines;</li><li>expón supuestos;</li><li>marca riesgos + fuente.</li></ol>
-            <span class="terminal-cursor"></span>
+      <section class="slide" data-slide="17">
+        <h2>Ahora unimos medición y movimiento.</h2>
+        <div class="integration-code">
+          <pre><code>const distance = readDistanceCm();
+
+if (distance &lt; 20) {
+  stop();
+  turnRight();
+} else {
+  forward();
+}</code></pre>
+          <div class="logic-map">
+            <p><b>distancia ≥ 20</b><span>avanzar</span></p>
+            <p><b>distancia &lt; 20</b><span>detener + girar</span></p>
           </div>
-          <p class="scribble">¿Qué falta?</p>
-          <div class="meme-sticker trust-meme"><s>TRUST ME BRO</s><small>CITE THE DATASHEET</small></div>
-          <figure class="sticker breadboard-sticker tilt-left">
-            <span class="tape blue"></span><img src="./public/assets/breadboard-white.jpg" alt="Breadboard blanca" />
-            <figcaption>BUILD / BUT VERIFY FIRST</figcaption>
-          </figure>
-          <aside><b>Anthony:</b> leer las tres reglas sin desarrollar ejemplos adicionales. “La respuesta importa menos que los supuestos que obliga a exponer.” <br /><b>Shiara:</b> conectar cada regla con una decisión física visible.</aside>
-        </section>
+        </div>
+        <aside>
+          Esta es la primera integración. Mantener el comportamiento pequeño y
+          observable antes de optimizar velocidad o navegación.
+        </aside>
+      </section>
 
-        <section class="zone debug-zone" data-x="3350" data-y="2050" data-z="1" aria-label="Debugging con hipótesis">
-          <div class="zone-index">DEBUG LIKE A SCIENTIST</div>
-          <h2>“No funciona”<br /><em>no basta.</em></h2>
-          <div class="good-question"><b>3 hipótesis.</b><br />1 experimento que las separe.<br /><small>SÍNTOMA → HIPÓTESIS → EXPERIMENTO → MEDICIÓN → UPDATE</small></div>
-          <figure class="sticker debug-board-sticker tilt-left">
-            <span class="tape blue"></span><img src="./public/assets/breadboard.jpg" alt="Circuito real montado en una breadboard" />
-            <figcaption>WORKS ON MY BREADBOARD*</figcaption>
-          </figure>
-          <figure class="sticker wires-sticker tilt-right">
-            <span class="tape red"></span><img src="./public/assets/jumper-wires.jpg" alt="Cables jumper" />
-            <figcaption>THE ACTUAL WIRING</figcaption>
-          </figure>
-          <aside><b>Shiara:</b> “El display no enciende.” Pausa. <br /><b>Anthony:</b> reformular en hipótesis y experimentos capaces de refutarlas. Recorrer el loop: el modelo propone; la medición actualiza el contexto; la realidad desempata.</aside>
-        </section>
+      <section class="slide" data-slide="18">
+        <h2>Cada estado tiene una evidencia visible.</h2>
+        <div class="state-grid">
+          <article><b>LEYENDO</b><p>La distancia cambia en serial.</p></article>
+          <article><b>AVANZANDO</b><p>Ambas ruedas giran al frente.</p></article>
+          <article><b>DETENIDO</b><p>PWM llega a cero.</p></article>
+          <article><b>GIRANDO</b><p>Las ruedas giran en sentidos distintos.</p></article>
+        </div>
+        <aside>
+          Los estados impresos en serial permiten relacionar software con el
+          movimiento físico observado.
+        </aside>
+      </section>
 
-        <section class="zone live-zone" data-x="2500" data-y="3900" data-z="1" aria-label="Live Vibe Hardware Time">
-          <div class="live-header"><span></span> CAMERA FEED READY <button id="demoReset" type="button">REPLAY [R]</button></div>
-          <h2 class="live-title">LIVE VIBE <em>HARDWARE TIME</em></h2>
-          <div class="camera-cue"><b>CAMBIAMOS DE APP</b><span>SLIDES → CÁMARA → MESA DE HARDWARE</span></div>
-          <div class="live-pair">
-            <div class="physical-side"><small>SHIARA / PHYSICAL</small><figure class="live-photo"><img src="./public/assets/oscilloscope.jpg" alt="Osciloscopio digital en uso" /><figcaption>NO SIGNAL</figcaption></figure><img class="usb-power" src="./public/assets/usb-power.jpg" alt="Cable USB-C con interruptor de alimentación" /><p class="demo-step" data-order="1">OBSERVACIÓN<br /><b>Display apagado</b></p><p class="demo-step reading" data-order="3">MEDICIÓN<br /><b>0.0 V</b></p></div>
-            <div class="signal-exchange"><i></i><i></i><i></i></div>
-            <div class="model-side mono"><small>ANTHONY / MODEL</small><div class="demo-step" data-order="2"><b>HYPOTHESES</b><p>H1 power<br />H2 wiring<br />H3 comms</p></div><div class="demo-step update" data-order="4"><b>UPDATE</b><p>Prioritize H1.<br /><em>Check USB → regulator.</em></p></div></div>
+      <section class="slide" data-slide="19">
+        <div class="failure-slide">
+          <h2>El sensor funciona. Las ruedas siguen detenidas.</h2>
+          <p>Medimos antes de cambiar código.</p>
+        </div>
+        <aside>
+          Iniciar aquí la demo de debugging. El dato útil es que la lectura del
+          sensor sí cambia; por lo tanto, el microcontrolador está ejecutando.
+        </aside>
+      </section>
+
+      <section class="slide" data-slide="20">
+        <h2>Ordenamos hipótesis por costo y riesgo.</h2>
+        <div class="hypotheses">
+          <p><span>H1</span><b>No llega alimentación a VM.</b><small>Medir voltaje.</small></p>
+          <p><span>H2</span><b>STBY sigue en bajo.</b><small>Medir nivel lógico.</small></p>
+          <p><span>H3</span><b>PWM o dirección están mal.</b><small>Revisar señales.</small></p>
+        </div>
+        <aside>
+          La primera prueba debe separar hipótesis sin mover cables ni reescribir el
+          programa.
+        </aside>
+      </section>
+
+      <section class="slide" data-slide="21">
+        <h2>Medimos VM antes de tocar el firmware.</h2>
+        <div class="measurement-focus">
+          <div><span>PUNTA ROJA</span><b>VM</b></div>
+          <i>+</i>
+          <div><span>PUNTA NEGRA</span><b>GND</b></div>
+          <strong>0.0 V</strong>
+          <small>Esperábamos aproximadamente 6 V</small>
+        </div>
+        <aside>
+          Mostrar el multímetro en voltaje DC. La lectura de 0 V prioriza la fuente
+          de motores sobre STBY y firmware.
+        </aside>
+      </section>
+
+      <section class="slide" data-slide="22">
+        <h2>Con una medición, el agente propone una prueba concreta.</h2>
+        <div class="debug-chat">
+          <article>
+            <span>NOSOTROS</span>
+            <p>VM = 0.0 V. USB activo. Sensor estable. Prioriza una prueba sin cambiar firmware.</p>
+          </article>
+          <article class="accent">
+            <span>CURSOR · GPT-5.6 SOL HIGH</span>
+            <p>Mide batería antes y después del switch. Corrige el primer punto que pierda voltaje.</p>
+          </article>
+        </div>
+        <div class="agent-result">VM ≈ 6 V → habilitamos motores → las ruedas giran</div>
+        <aside>
+          Esta interacción es un ejemplo reproducible. Reemplazarla por la
+          conversación y las mediciones reales. El agente recibe evidencia concreta
+          y devuelve una prueba falsable.
+        </aside>
+      </section>
+
+      <section class="slide" data-slide="23">
+        <h2>El síntoma solo produce respuestas genéricas.</h2>
+        <div class="failure-compare">
+          <article>
+            <span>SÍNTOMA SOLO</span>
+            <code>“El robot se reinicia. Arréglalo.”</code>
+            <p>Delay, reintentos y cambios de librería.</p>
+          </article>
+          <article class="accent">
+            <span>SÍNTOMA + EVIDENCIA</span>
+            <code>Brownout al arrancar motores. La línea de 3.3 V cae.</code>
+            <p>Revisar alimentación antes de cambiar firmware.</p>
+          </article>
+        </div>
+        <div class="solution-path">Potencia separada → GND común → medir otra vez</div>
+        <aside>
+          Este es un segundo ejemplo reproducible. Si aparece un brownout real,
+          reemplazarlo con el log y la medición del montaje. La misma falla puede
+          provocar resets, lecturas inestables y diagnósticos de software erróneos.
+        </aside>
+      </section>
+
+      <section class="slide" data-slide="24">
+        <h2>Antes de energizar, verificamos seis cosas.</h2>
+        <div class="checklist-grid">
+          <p><span>01</span>Polaridad</p>
+          <p><span>02</span>Voltajes</p>
+          <p><span>03</span>GND común</p>
+          <p><span>04</span>Continuidad</p>
+          <p><span>05</span>Pines exactos</p>
+          <p><span>06</span>Ruedas elevadas</p>
+        </div>
+        <aside>
+          Leer esta lista antes de aplicar energía. Es corta porque debe usarse de
+          verdad.
+        </aside>
+      </section>
+
+      <section class="slide" data-slide="25">
+        <div class="visual-split">
+          <div>
+            <h2>El robot termina cuando cumple cuatro pruebas.</h2>
+            <div class="pass-list">
+              <p>Lee una distancia real</p>
+              <p>Avanza recto</p>
+              <p>Se detiene a 20 cm</p>
+              <p>Gira y continúa</p>
+            </div>
           </div>
-          <div class="demo-status" id="demoStatus">AUTO SEQUENCE · 8 SEC</div>
-          <aside><b>Anthony:</b> “Llegó Live Vibe Hardware Time. Pausamos las slides y abrimos la cámara de la mesa.” Cambiar desde el navegador a la app de cámara del MacBook. <br /><b>Shiara:</b> mostrar el montaje prearmado, el síntoma y la medición. <br /><b>Anthony:</b> alternar entre cámara y agente para enseñar hipótesis y actualización. No tocar código hasta verificar alimentación. <br /><b>Ambos:</b> reparar, comprobar que funciona y cambiar de vuelta al navegador.</aside>
-        </section>
-
-        <section class="zone rules-zone" data-x="4300" data-y="3500" data-z="1" aria-label="Tres reglas">
-          <div class="zone-index">FIELD RULES</div>
-          <h2>Tres reglas para<br /><em>no freír nada.</em></h2>
-          <div class="rule-notes">
-            <article><span>01</span><h3>GROUND</h3><p>Specs reales.</p></article>
-            <article><span>02</span><h3>CONSTRAIN</h3><p>Riesgos visibles.</p></article>
-            <article><span>03</span><h3>CLOSE LOOP</h3><p>Medir → actualizar.</p></article>
-          </div>
-          <div class="approved-stamp">REALITY<br />APPROVED</div>
-          <aside><b>Shiara:</b> Ground. <br /><b>Anthony:</b> Constrain y Close the loop. Una frase por regla.</aside>
-        </section>
-
-        <section class="zone end-zone" data-x="5900" data-y="4000" data-z="1" aria-label="Cierre y comunidad">
-          <div class="zone-index">END OF ROUTE / JOIN THE COMMUNITY</div>
-          <h2>La IA nos da<br /><em>hipótesis.</em></h2>
-          <h2>La realidad nos da<br /><strong>respuestas.</strong></h2>
-          <p><b>¿Construyes hardware con IA? Únete.</b></p>
-          <a class="community-url" href="http://crafters.chat/">crafters.chat →</a>
-          <a class="repo-url" href="https://github.com/crafter-station/vibe-hardware-f13-slides" target="_blank" rel="noreferrer">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.38.97.1-.75.4-1.27.74-1.56-2.57-.29-5.27-1.29-5.27-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.05 0 0 .97-.31 3.16 1.18a10.9 10.9 0 0 1 5.76 0c2.19-1.49 3.16-1.18 3.16-1.18.63 1.58.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.71 5.39-5.29 5.68.42.36.79 1.06.79 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z" /></svg>
-            <span>github.com/crafter-station/vibe-hardware-f13-slides</span>
-          </a>
-          <div class="end-names">SHIARA + ANTHONY · F13</div>
-          <figure class="sticker qr-sticker tilt-right">
-            <span class="tape"></span><a href="http://crafters.chat/"><img src="./public/assets/repo-qr.png" alt="QR a crafters.chat" /></a>
-            <figcaption>CRAFTERS.CHAT · COME BUILD WITH US</figcaption>
+          <figure class="robot-figure">
+            <img src="./public/assets/robot-plan.svg" alt="Robot completo y verificado" />
           </figure>
-          <aside><b>Ambos:</b> “La IA nos da hipótesis. La realidad nos da respuestas.” <br /><b>Anthony:</b> “Si tú también estás aprendiendo a shippear hardware, estamos construyendo esa comunidad en crafters.chat.” Dejar el QR durante preguntas.</aside>
-        </section>
-      </div>
+        </div>
+        <aside>
+          Reemplazar la ilustración por la foto del robot real y registrar los
+          resultados observados durante el ensayo.
+        </aside>
+      </section>
+
+      <section class="slide" data-slide="26">
+        <h2>Vibecoding hardware = cambiar, medir y actualizar.</h2>
+        <div class="workflow">
+          <article><span>1</span><b>Contexto</b><p>Fuentes y montaje.</p></article>
+          <article><span>2</span><b>Propuesta</b><p>Conexiones y código.</p></article>
+          <article><span>3</span><b>Verificación</b><p>Antes de energizar.</p></article>
+          <article><span>4</span><b>Medición</b><p>La realidad responde.</p></article>
+          <article><span>5</span><b>Actualización</b><p>El agente recibe evidencia.</p></article>
+        </div>
+        <aside>
+          Este ciclo se repite en sensor, motores e integración. El agente acelera
+          propuestas; las fuentes y mediciones autorizan el siguiente paso.
+        </aside>
+      </section>
+
+      <section class="slide" data-slide="27">
+        <div class="closing">
+          <div>
+            <h2>La IA propone.<br />La realidad responde.</h2>
+            <p>Construye con contexto. Verifica antes de conectar.</p>
+          </div>
+          <figure>
+            <img src="./public/assets/repo-qr.png" alt="QR a crafters.chat" />
+            <figcaption>Recursos y comunidad</figcaption>
+          </figure>
+        </div>
+        <aside>
+          Dejar el QR en pantalla. El enlace visible al repositorio se omite.
+        </aside>
+      </section>
     </main>
 
-    <footer class="navigator">
-      <button class="map-button" id="mapButton" type="button" title="Ver mapa completo (O)" aria-label="Ver mapa completo">⌁</button>
-      <button id="previousButton" type="button" aria-label="Punto anterior">←</button>
-      <div class="route-progress" id="routeProgress"></div>
-      <button id="nextButton" type="button" aria-label="Punto siguiente">→</button>
-      <span class="travel-hint">ARROWS · SCROLL · DRAG</span>
-      <div class="nav-tools">
-        <button id="zoomOutButton" type="button" title="Alejar">−</button><button id="zoomInButton" type="button" title="Acercar">+</button>
-        <button id="notesButton" type="button" title="Notas (N)">N</button><button id="themeButton" type="button" title="Tema (T)">T</button>
-        <button id="soundButton" type="button" title="Sonido (M)">S<span>ON</span></button><button id="fullscreenButton" type="button" title="Pantalla completa (F)">F</button>
+    <div class="notes-panel" id="notesPanel" aria-hidden="true">
+      <div class="notes-head">
+        <span>NOTAS · <b id="notesSlide">01</b></span>
+        <button id="closeNotes" type="button">CERRAR [N]</button>
       </div>
-    </footer>
-
-    <div class="location-readout" id="locationReadout">OVERVIEW / 9 STOPS</div>
-
-    <div class="notes-panel" id="notesPanel"><div class="notes-head"><span>FIELD NOTES · <b id="notesStop">MAP</b></span><button id="closeNotes" type="button">CLOSE [N]</button></div><div id="notesContent">Selecciona un punto del mapa.</div></div>
-    <button class="audio-gate" id="audioGate" type="button">ENABLE AMBIENT SIGNAL</button>
+      <div id="notesContent"></div>
+    </div>
 
     <script type="module" src="./presentation.ts"></script>
   </body>
